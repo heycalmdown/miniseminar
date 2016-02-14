@@ -10,8 +10,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/page/:id', (req, res, next) => {
-  // storage
-  // editor
   confluency.getPage(req.params.id, ['body.storage']).then(page => {
     res.render('page', { title: page.title, contents: page.body.storage.value });
   }).catch(next);
