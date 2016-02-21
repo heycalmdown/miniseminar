@@ -8,7 +8,14 @@ html
   body
     .reveal
       .slides
-        !{contents}
+        each section in sections
+          unless section.sections
+            section!=section
+          else
+            section
+              each subSection in section.sections
+                section!=subSection
+
     script(src='/lib/js/head.min.js')
     script(src='/js/reveal.js')
     script.
