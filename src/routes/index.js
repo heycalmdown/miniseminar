@@ -41,7 +41,8 @@ router.get('/page/:id', (req, res, next) => {
 });
 
 router.get(/\/image\/(.*)/, (req, res, next) => {
-  return superagent.get(`${host}/${req.params[0]}?${req.query}`).pipe(res);
+  const request = superagent.get(`${host}/${req.params[0]}?${req.query}`);
+  return confluency.auth(request).pipe(res);
 });
 
 module.exports = router;
