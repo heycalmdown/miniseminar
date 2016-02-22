@@ -4,9 +4,12 @@ import * as cheerio from 'cheerio';
 import * as superagent from 'superagent';
 import * as url from 'url';
 
-const host = 'https://confluency.atlassian.net';
+const host = process.env.HOST;// || 'https://confluency.atlassian.net';
+const context = process.env.CONTEXT;
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
 const router = express.Router();
-const confluency = new Confluency({host, context: 'wiki'}); 
+const confluency = new Confluency({host, context, username, password}); 
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -14,8 +17,8 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/page/:id', (req, res, next) => {
-  confluency.getPage(req.params.id, ['body.storage', 'body.view']).then(page => {
-    const contents = page.body.view.value;
+  confluency.getPage(req.params.id, ['body.view']).then(page => {
+    const contents = page.body.view.value.replace(/ \//g, '/');
     let sections = contents.split('<hr/><hr/>').map(section => {
       if (section.indexOf('<hr/>') === -1) return section;
       return {sections: section.split('<hr/>')};

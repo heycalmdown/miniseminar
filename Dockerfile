@@ -1,5 +1,8 @@
 FROM    node:5.6.0
-ADD     bin/ public/ src/ views/ * /app/
 WORKDIR /app
+ADD     README.md package.json /app/
 RUN     npm i --progress=false
-CMD     npm babelstart
+ADD     src/ /app/ 
+RUN     npm babel
+ADD     bin/ public/ views/ * /app/
+CMD     npm start
