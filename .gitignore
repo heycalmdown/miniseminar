@@ -1,6 +1,7 @@
 # local environment
 .nvmrc
 typings
+test.js
 
 # temporarily generated
 .tmp
