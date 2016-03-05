@@ -1,8 +1,17 @@
-FROM    node:5.6.0
+FROM    node:5.7.1-slim
 WORKDIR /app
-ADD     README.md package.json /app/
+
+COPY    README.md package.json /app/
 RUN     npm i --progress=false
-ADD     src/ /app/ 
-RUN     npm babel
-ADD     bin/ public/ views/ * /app/
+
+COPY    src /app/src/
+RUN     npm run babel
+
+COPY    bin     /app/bin
+COPY    public  /app/public
+COPY    views   /app/views
+COPY    *       /app/
+
+EXPOSE  3000
+
 CMD     npm start
