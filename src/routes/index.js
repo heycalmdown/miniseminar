@@ -16,6 +16,54 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
+function attached(section) {
+  const $ = cheerio.load(section);
+  const img = $('img');
+  if (img.length === 0) return section;
+  if (img.data('linked-resource-type') !== 'attachment') return section;
+  img.attr('src', '/image' + img.data('image-src'));
+  return $.html();
+}
+function link(section) {
+  const $ = cheerio.load(section);
+  const aList = $('a');
+  if (aList.length === 0) return section;
+  aList.each((i, el) => {
+    if (el.attribs.href[0] === '/') {
+      el.attribs.href = host + el.attribs.href;
+    }
+  });
+  return $.html();
+}
+function code(section) {
+  const $ = cheerio.load(section, {xmlMode: true});
+  const script = $('.code.panel.pdl script[type=syntaxhighlighter]');
+  if (script.length === 0) return section;
+  let code = 'nocontent';
+  try {
+    code = script[0].children[0].children[0].data;
+  } catch (e) {
+    console.error(e);
+  }
+  script.parent().html(`<pre><code data-trim data-noescape class="lang-javascript" style="font-size: smaller">${code}</code></pre>`);
+  return $.html();
+}
+function fragment(section) {
+  const $ = cheerio.load(section);
+  const liList = $('li');
+  if (liList.length === 0) return section;
+  liList.each((i, el) => {
+    el = $(el);
+    let text = el.text();
+    if (text.includes('⏎')) {
+      text = text.replace('⏎', '');
+      el.text(text);
+      el.addClass('fragment');
+    }
+  });
+  return $.html();
+}
+
 router.get('/page/:id', (req, res, next) => {
   confluency.getPage(req.params.id, ['body.view']).then(page => {
     const contents = page.body.view.value.replace(/ \//g, '/');
@@ -23,43 +71,12 @@ router.get('/page/:id', (req, res, next) => {
       if (section.indexOf('<hr/>') === -1) return section;
       return {sections: section.split('<hr/>')};
     });
-    function attached(section) {
-      const $ = cheerio.load(section);
-      const img = $('img');
-      if (img.length === 0) return section;
-      if (img.data('linked-resource-type') !== 'attachment') return section;
-      img.attr('src', '/image' + img.data('image-src'));
-      return $.html();
-    }
-    function link(section) {
-      const $ = cheerio.load(section);
-      const aList = $('a');
-      if (aList.length === 0) return section;
-      aList.each((i, el) => {
-        if (el.attribs.href[0] === '/') {
-          el.attribs.href = host + el.attribs.href;
-        }
-      });
-      return $.html();
-    }
-    function code(section) {
-      const $ = cheerio.load(section, {xmlMode: true});
-      const script = $('.code.panel.pdl script[type=syntaxhighlighter]');
-      if (script.length === 0) return section;
-      let code = 'nocontent';
-      try {
-        code = script[0].children[0].children[0].data;
-      } catch (e) {
-        console.error(e);
-      }
-      script.parent().html(`<pre><code data-trim data-noescape class="lang-javascript" style="font-size: smaller">${code}</code></pre>`);
-      return $.html();
-    }
     function map(section) {
       return [
         attached,
         link,
-        code
+        code,
+        fragment,
       ].reduce((section, middleware) => middleware(section), section);
     }
     sections = sections.map(section => {
