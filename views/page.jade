@@ -3,7 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='/css/reveal.css')
-    link(rel='stylesheet', href='/css/theme/black.css')#theme
+    link(rel='stylesheet', href='/css/theme/' + (theme || 'black') + '.css')#theme
     link(rel='stylesheet', href='/lib/css/zenburn.css')
   body
     .reveal
@@ -26,7 +26,7 @@ html
         history: true,
         center: true,
 
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transition: '#{transition || "slide"}', // none/fade/slide/convex/concave/zoom
 
         // Optional reveal.js plugins
         dependencies: [

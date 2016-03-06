@@ -65,6 +65,16 @@ function fragment(section) {
 }
 
 router.get('/page/:id', (req, res, next) => {
+  const THEMES = {
+    beige: 'beige', black: 'black', blood: 'blood', league: 'league', moon: 'moon', night: 'night', serif: 'serif',
+    simple: 'simple', sky: 'sky', solarized: 'solarized', white: 'white'
+  };
+  const theme = THEMES[req.query.theme] || 'black';
+  const TRANSITIONS = {
+    none: 'none', fade: 'fade', slide: 'slide', convex: 'convex', concave: 'concave', zoom: 'zoom'
+  };
+  const transition = TRANSITIONS[req.query.transition] || 'slide';
+  
   confluency.getPage(req.params.id, ['body.view']).then(page => {
     const contents = page.body.view.value.replace(/ \//g, '/');
     let sections = contents.split('<hr/><hr/>').map(section => {
@@ -84,7 +94,7 @@ router.get('/page/:id', (req, res, next) => {
       section.sections = section.sections.map(section => map(section));
       return section;
     });
-    res.render('page', { title: page.title, sections: sections });
+    res.render('page', { title: page.title, sections, theme, transition });
   }).catch(next);
 });
 
