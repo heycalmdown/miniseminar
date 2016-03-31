@@ -33,6 +33,7 @@ $ docker run -e HOST=http://your.host.name:port -e CONTEXT=wiki -e USERNAME=haha
 * Vertical Slice - Add single `horizontal rule`
 * Links - Use any link style which Confluence support
 * Image - Use any image style wich Confluence support including attachment
+* Table - Use Confluence table as usual
 * Fragments - Ends a sentence with `⏎`(unicode return symbol)
 * Theming - Use a query parameter `?theme=black`
 * Transition Style - Use a query paramenter `?transition=slide`
