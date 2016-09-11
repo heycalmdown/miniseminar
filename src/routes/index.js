@@ -16,13 +16,15 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
-function attached(section) {
-  const $ = cheerio.load(section);
-  const img = $('img');
-  if (img.length === 0) return section;
-  if (img.data('linked-resource-type') !== 'attachment') return section;
-  img.attr('src', '/image' + img.data('image-src'));
-  return $.html();
+function attached(req) {
+  return (section) => {
+    const $ = cheerio.load(section);
+    const img = $('img');
+    if (img.length === 0) return section;
+    if (img.data('linked-resource-type') !== 'attachment') return section;
+    img.attr('src', req.baseUrl + '/image' + img.data('image-src'));
+    return $.html();
+  };
 }
 function link(section) {
   const $ = cheerio.load(section);
@@ -83,7 +85,7 @@ router.get('/page/:id', (req, res, next) => {
     });
     function map(section) {
       return [
-        attached,
+        attached(req),
         link,
         code,
         fragment,
@@ -94,7 +96,7 @@ router.get('/page/:id', (req, res, next) => {
       section.sections = section.sections.map(section => map(section));
       return section;
     });
-    res.render('page', { title: page.title, sections, theme, transition });
+    res.render('page', { title: page.title, req, sections, theme, transition });
   }).catch(next);
 });
 

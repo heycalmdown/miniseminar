@@ -2,9 +2,9 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/css/reveal.css')
-    link(rel='stylesheet', href='/css/theme/' + (theme || 'black') + '.css')#theme
-    link(rel='stylesheet', href='/lib/css/zenburn.css')
+    link(rel='stylesheet', href=req.baseUrl + '/css/reveal.css')
+    link(rel='stylesheet', href=req.baseUrl + '/css/theme/' + (theme || 'black') + '.css')#theme
+    link(rel='stylesheet', href=req.baseUrl + '/lib/css/zenburn.css')
   body
     .reveal
       .slides
@@ -16,8 +16,8 @@ html
               each subSection in section.sections
                 section!=subSection
 
-    script(src='/lib/js/head.min.js')
-    script(src='/js/reveal.js')
+    script(src=req.baseUrl + '/lib/js/head.min.js')
+    script(src=req.baseUrl + '/js/reveal.js')
     script.
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
@@ -30,11 +30,11 @@ html
 
         // Optional reveal.js plugins
         dependencies: [
-          { src: '/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: '/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: '/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: '/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: '/plugin/zoom-js/zoom.js', async: true },
-          { src: '/plugin/notes/notes.js', async: true }
+         { src: '#{req.baseUrl}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+         { src: '#{req.baseUrl}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+         { src: '#{req.baseUrl}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+         { src: '#{req.baseUrl}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+         { src: '#{req.baseUrl}/plugin/zoom-js/zoom.js', async: true },
+         { src: '#{req.baseUrl}/plugin/notes/notes.js', async: true }
         ]
       });
