@@ -1,5 +1,6 @@
 # miniseminar
-confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
+
+Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
 
 [![Dependency Status](https://david-dm.org/heycalmdown/miniseminar/status.svg)](https://david-dm.org/heycalmdown/miniseminar)
 
