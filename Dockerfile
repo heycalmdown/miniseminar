@@ -1,4 +1,4 @@
-FROM    node:5.7.1-slim
+FROM    node:6.9.1-slim
 WORKDIR /app
 
 COPY    README.md package.json /app/
