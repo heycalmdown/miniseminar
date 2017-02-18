@@ -16,13 +16,25 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 
+function sanitizeImageSrc(imageSrc) {
+  if (!imageSrc.startsWith(host)) return imageSrc;
+  return imageSrc.slice(host.length);
+}
+
+function convertImageSrcSet(baseUrl, imageSrcSet) {
+  return imageSrcSet.split(',').map(src => baseUrl + '/image' + src).join(',');
+}
+
 function attached(req) {
   return (section) => {
     const $ = cheerio.load(section);
     const img = $('img');
     if (img.length === 0) return section;
     if (img.data('linked-resource-type') !== 'attachment') return section;
-    img.attr('src', req.baseUrl + '/image' + img.data('image-src'));
+    const imageSrc = img.data('image-src');
+    img.attr('src', req.baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+    const imageSrcSet = img.attr('srcset');
+    img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
     return $.html();
   };
 }

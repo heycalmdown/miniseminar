@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "test": "npm run babel && jasmine dist/spec/**/*.js",
     "babelstart": "npm run babel && npm start",
     "babel": "babel -d dist/ src/",
     "commitmsg": "validate-commit-msg"
@@ -25,6 +26,7 @@
     "babel-preset-es2015": "^6.5.0",
     "babel-register": "^6.5.1",
     "husky": "^0.13.1",
+    "jasmine": "^2.5.3",
     "validate-commit-msg": "^2.11.1"
   },
   "babel": {
@@ -35,7 +37,12 @@
   "config": {
     "validate-commit-msg": {
       "scope": {
-        "allowed": ["readme", "package", "docker"],
+        "allowed": [
+          "readme",
+          "package",
+          "docker",
+          "img"
+        ],
         "validate": true
       },
       "autoFix": true
