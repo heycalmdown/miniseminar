@@ -33,11 +33,12 @@
     ]
   },
   "config": {
-    "validate-config-msg": {
+    "validate-commit-msg": {
       "scope": {
-        "allowed": ["readme", "package"],
-        "autoFix": true
-      }
+        "allowed": ["readme", "package", "docker"],
+        "validate": true
+      },
+      "autoFix": true
     }
   }
 }
