@@ -22,11 +22,18 @@
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-preset-es2015": "^6.5.0",
-    "babel-register": "^6.5.1"
+    "babel-register": "^6.5.1",
+    "git-scripts": "^0.2.1",
+    "validate-commit": "^2.3.2"
   },
   "babel": {
     "presets": [
       "es2015"
     ]
+  },
+  "git": {
+    "scripts": {
+        "commit-msg": "./node_modules/.bin/validate-commit-msg $1"
+    }
   }
 }
