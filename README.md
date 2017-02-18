@@ -2,7 +2,7 @@
 
 [![dockeri.co](http://dockeri.co/image/heycalmdown/miniseminar)](https://registry.hub.docker.com/heycalmdown/miniseminar/)
 
-[![Build Status](https://travis-ci.org/heycalmdown/miniseminar.svg?branch=master)](https://travis-ci.org/heycalmdown/miniseminar)
+[![Build Status](https://travis-ci.org/heycalmdown/miniseminar.svg?branch=release-1.0)](https://travis-ci.org/heycalmdown/miniseminar)
 [![Greenkeeper badge](https://badges.greenkeeper.io/heycalmdown/miniseminar.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://david-dm.org/heycalmdown/miniseminar/status.svg)](https://david-dm.org/heycalmdown/miniseminar)
 [![CodeFactor](https://www.codefactor.io/repository/github/heycalmdown/miniseminar/badge)](https://www.codefactor.io/repository/github/heycalmdown/miniseminar)
