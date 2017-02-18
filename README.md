@@ -6,6 +6,8 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/heycalmdown/miniseminar.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://david-dm.org/heycalmdown/miniseminar/status.svg)](https://david-dm.org/heycalmdown/miniseminar)
 [![CodeFactor](https://www.codefactor.io/repository/github/heycalmdown/miniseminar/badge)](https://www.codefactor.io/repository/github/heycalmdown/miniseminar)
+[![](https://images.microbadger.com/badges/image/heycalmdown/miniseminar:1.0.svg)](https://microbadger.com/images/heycalmdown/miniseminar:1.0 "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/heycalmdown/miniseminar:1.0.svg)](https://microbadger.com/images/heycalmdown/miniseminar:1.0 "Get your own version badge on microbadger.com")
 
 
 Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
