@@ -43,6 +43,7 @@ gulp.task('js', function() {
         });
       }))
       .on('error', function (error) {
+        /*eslint no-console: "error"*/
         console.log(error.stack);
         this.emit('end')
     })
