@@ -1,5 +1,7 @@
 # miniseminar
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/heycalmdown/miniseminar.svg)](https://greenkeeper.io/)
+
 Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
 
 [![Dependency Status](https://david-dm.org/heycalmdown/miniseminar/status.svg)](https://david-dm.org/heycalmdown/miniseminar)
