@@ -32,9 +32,12 @@
       "es2015"
     ]
   },
-  "git": {
-    "scripts": {
-      "commit-msg": "./node_modules/.bin/validate-commit-msg $1"
+  "config": {
+    "validate-config-msg": {
+      "scope": {
+        "allowed": ["readme", "package"],
+        "autoFix": true
+      }
     }
   }
 }
