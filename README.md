@@ -18,7 +18,7 @@ Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
 ## How to run
 
 ```
-$ docker run -p 3000:3000 heycalmdown/miniseminar
+$ docker run -ti -p 3000:3000 -e HOST=https://confluency.atlassian.net -e CONTEXT=wiki heycalmdown/miniseminar
 ```
 
 Open your preferred browser and type `localhost:3000/page/:your-confluence-page-id`. The page id should be a number.
