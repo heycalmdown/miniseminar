@@ -28,13 +28,16 @@ function convertImageSrcSet(baseUrl, imageSrcSet) {
 function attached(req) {
   return (section) => {
     const $ = cheerio.load(section);
-    const img = $('img');
-    if (img.length === 0) return section;
-    if (img.data('linked-resource-type') !== 'attachment') return section;
-    const imageSrc = img.data('image-src');
-    img.attr('src', req.baseUrl + '/image' + sanitizeImageSrc(imageSrc));
-    const imageSrcSet = img.attr('srcset');
-    img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
+    const imgs = $('img');
+    if (imgs.length === 0) return section;
+    imgs.map((i, el) => {
+      const img = $(el);
+      if (img.data('linked-resource-type') !== 'attachment') return section;
+      const imageSrc = img.data('image-src');
+      img.attr('src', req.baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+      const imageSrcSet = img.attr('srcset');
+      img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
+    });
     return $.html();
   };
 }
