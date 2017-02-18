@@ -1,8 +1,12 @@
 # miniseminar
 
+[![dockeri.co](http://dockeri.co/image/heycalmdown/miniseminar)](https://registry.hub.docker.com/heycalmdown/miniseminar/)
+
 [![Build Status](https://travis-ci.org/heycalmdown/miniseminar.svg?branch=master)](https://travis-ci.org/heycalmdown/miniseminar)
 [![Greenkeeper badge](https://badges.greenkeeper.io/heycalmdown/miniseminar.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://david-dm.org/heycalmdown/miniseminar/status.svg)](https://david-dm.org/heycalmdown/miniseminar)
+
+
 
 Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
 
@@ -42,3 +46,5 @@ $ docker run -e HOST=http://your.host.name:port -e CONTEXT=wiki -e USERNAME=haha
 * Fragments - Ends a sentence with `⏎`(unicode return symbol)
 * Theming - Use a query parameter `?theme=black`
 * Transition Style - Use a query paramenter `?transition=slide`
+
+
