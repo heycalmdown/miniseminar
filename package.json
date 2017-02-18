@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "babelstart": "npm run babel && npm start",
-    "babel": "babel -d dist/ src/"
+    "babel": "babel -d dist/ src/",
+    "commitmsg": "validate-commit-msg"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -23,8 +24,8 @@
     "babel-cli": "^6.5.1",
     "babel-preset-es2015": "^6.5.0",
     "babel-register": "^6.5.1",
-    "git-scripts": "^0.2.1",
-    "validate-commit": "^2.3.2"
+    "husky": "^0.13.1",
+    "validate-commit-msg": "^2.11.1"
   },
   "babel": {
     "presets": [
@@ -33,7 +34,7 @@
   },
   "git": {
     "scripts": {
-        "commit-msg": "./node_modules/.bin/validate-commit-msg $1"
+      "commit-msg": "./node_modules/.bin/validate-commit-msg $1"
     }
   }
 }
