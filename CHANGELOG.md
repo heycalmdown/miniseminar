@@ -1,3 +1,14 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/heycalmdown/miniseminar/compare/v1.0.2...v1.1.0) (2017-02-19)
+
+
+### Features
+
+* **home:** add "Recently viewed" and "Labeled" ([d98aa07](https://github.com/heycalmdown/miniseminar/commit/d98aa07))
+* **home:** add list of themes and transitions ([57f41c9](https://github.com/heycalmdown/miniseminar/commit/57f41c9))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/heycalmdown/miniseminar/compare/v1.0.1...v1.0.2) (2017-02-19)
 
