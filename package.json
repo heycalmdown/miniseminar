@@ -41,7 +41,8 @@
           "package",
           "docker",
           "img",
-          "codefactor"
+          "codefactor",
+          ".ignore"
         ],
         "validate": true
       },
