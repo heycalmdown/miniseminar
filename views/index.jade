@@ -1,5 +1,14 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 Recently viewed
+  ul
+    each i in recentlyViewed
+      li
+        a(href="/page/#{i.id}")= i.title
+
+  h1 Labeled as #miniseminar
+  ul
+    each i in labeled
+      li
+        a(href="/page/#{i.id}")= i.title
