@@ -36,7 +36,9 @@ function attached(req) {
       const imageSrc = img.data('image-src');
       img.attr('src', req.baseUrl + '/image' + sanitizeImageSrc(imageSrc));
       const imageSrcSet = img.attr('srcset');
-      img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
+      if (imageSrcSet) {
+        img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
+      }
     });
     return $.html();
   };
