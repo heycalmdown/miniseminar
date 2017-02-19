@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/heycalmdown/miniseminar/compare/v1.1.0...v1.1.1) (2017-02-19)
+
+
+### Features
+
+* **home:** add a GitHub button ([ccf0b8b](https://github.com/heycalmdown/miniseminar/commit/ccf0b8b))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/heycalmdown/miniseminar/compare/v1.0.2...v1.1.0) (2017-02-19)
 
