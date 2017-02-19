@@ -1,5 +1,45 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  script.
+    var theme = 'black';
+    var transition = 'slide';
+    function haha() {
+      document.getElementById('query').innerText = '?theme=' + theme + '&transition=' + transition;
+    }
+    function setTheme(t) {
+      theme = t;
+      haha();
+    }
+    function setTransition(t) {
+      transition = t;
+      haha();
+    }
+
+  div.division
+    h1 Recently viewed
+    ul
+      each i in recentlyViewed
+        li
+          a(href="/page/#{i.id}")= i.title
+
+    h1 Labeled as #miniseminar
+    ul
+      each i in labeled
+        li
+          a(href="/page/#{i.id}")= i.title
+
+  div.division
+    p Query: 
+      span#query ?theme=black&transition=slide
+    h1 Themes
+    ul
+      each i in themes
+        li
+          a(onclick="setTheme('#{i}')")= i
+
+    h1 Transitions
+    ul
+      each i in transitions
+        li
+          a(onclick="setTransition('#{i}')")= i

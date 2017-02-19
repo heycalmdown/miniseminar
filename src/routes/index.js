@@ -3,6 +3,7 @@ import Confluency from 'confluency';
 import * as cheerio from 'cheerio'; 
 import * as superagent from 'superagent';
 import * as url from 'url';
+import * as _ from 'lodash';
 
 const host = process.env.HOST;// || 'https://confluency.atlassian.net';
 const context = process.env.CONTEXT;
@@ -11,9 +12,24 @@ const password = process.env.PASSWORD;
 const router = express.Router();
 const confluency = new Confluency({host, context, username, password}); 
 
+const themes = [
+  'beige', 'black', 'blood', 'league', 'moon', 'night', 'serif', 'simple', 'sky', 'solarized', 'white'
+];
+const transitions = [
+  'none', 'fade', 'slide', 'convex', 'concave', 'zoom'
+];
+
+const THEMES = _.zipObject(themes, themes.map(o => o));
+const TRANSITIONS = _.zipObject(transitions, transitions.map(o => o));
+
+let recentlyViewed = [];
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  return confluency.search('label=miniseminar').then(data => {
+    const labeled = _.map(data, page => ({id: page.id, title: page.title}));
+    res.render('index', { recentlyViewed, labeled, themes, transitions });
+  });
 });
 
 function sanitizeImageSrc(imageSrc) {
@@ -84,17 +100,13 @@ function fragment(section) {
 }
 
 router.get('/page/:id', (req, res, next) => {
-  const THEMES = {
-    beige: 'beige', black: 'black', blood: 'blood', league: 'league', moon: 'moon', night: 'night', serif: 'serif',
-    simple: 'simple', sky: 'sky', solarized: 'solarized', white: 'white'
-  };
   const theme = THEMES[req.query.theme] || 'black';
-  const TRANSITIONS = {
-    none: 'none', fade: 'fade', slide: 'slide', convex: 'convex', concave: 'concave', zoom: 'zoom'
-  };
   const transition = TRANSITIONS[req.query.transition] || 'slide';
-  
+
   confluency.getPage(req.params.id, ['body.view']).then(page => {
+    recentlyViewed.push({id: req.params.id, title: page.title});
+    recentlyViewed = _.uniqBy(recentlyViewed, 'id');
+
     const contents = page.body.view.value.replace(/ \//g, '/');
     let sections = contents.split('<hr/><hr/>').map(section => {
       if (section.indexOf('<hr/>') === -1) return section;

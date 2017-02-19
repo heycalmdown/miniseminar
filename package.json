@@ -17,6 +17,7 @@
     "debug": "~2.6.1",
     "express": "~4.14.1",
     "jade": "~1.11.0",
+    "lodash": "^4.17.4",
     "morgan": "~1.8.1",
     "superagent": "^3.4.4"
   },
@@ -41,7 +42,9 @@
           "package",
           "docker",
           "img",
-          "codefactor"
+          "codefactor",
+          ".ignore",
+          "home"
         ],
         "validate": true
       },
