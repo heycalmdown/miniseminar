@@ -17,6 +17,13 @@ block content
     }
 
   div.division
+    if pinned.length
+      h1 Pinned
+      ul
+        each i in pinned
+          li
+            a(href="/page/#{i.id}")= i.title
+
     h1 Recently viewed
     ul
       each i in recentlyViewed

@@ -1,9 +1,7 @@
+import { sanitizeImageSrc, setHost, splitPinnedPages } from '../util';
+
 describe('miniseminar', () => {
-  const host = 'https://confluency.atlassian.net';
-  function sanitizeImageSrc(imageSrc) {
-    if (!imageSrc.startsWith(host)) return imageSrc;
-    return imageSrc.slice(host.length);
-  }
+  setHost('https://confluency.atlassian.net');
 
   it('should sanitize image-src to handle various confluence version', () => {
     const uri1 = 'https://confluency.atlassian.net/wiki/download/attachments/2097156/IMG_7444.jpg?version=1&modificationDate=1456043588519&cacheVersion=1&api=v2';
@@ -19,5 +17,11 @@ describe('miniseminar', () => {
       return imageSrcSet.split(',').map(src => baseUrl + '/image' + src).join(',');
     }
     expect(convertImageSrcSet('', input)).toEqual(output);
+  });
+  it('should split PINNED_PAGES', () => {
+    expect(splitPinnedPages('123,456')).toEqual(['123', '456']);
+    expect(splitPinnedPages('123')).toEqual(['123']);
+    expect(splitPinnedPages('')).toEqual([]);
+    expect(splitPinnedPages()).toEqual([]);
   });
 });

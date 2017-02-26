@@ -5,10 +5,13 @@ import * as superagent from 'superagent';
 import * as url from 'url';
 import * as _ from 'lodash';
 
-const host = process.env.HOST;// || 'https://confluency.atlassian.net';
+import { host, sanitizeImageSrc, splitPinnedPages } from '../util';
+
 const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
+const pinnedPages = splitPinnedPages(process.env.PINNED_PAGES);
+
 const router = express.Router();
 const confluency = new Confluency({host, context, username, password}); 
 
@@ -24,18 +27,20 @@ const TRANSITIONS = _.zipObject(transitions, transitions.map(o => o));
 
 let recentlyViewed = [];
 
+function pickSummary(page) {
+  return {id: page.id, title: page.title};
+}
+
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  return confluency.search('label=miniseminar').then(data => {
-    const labeled = _.map(data, page => ({id: page.id, title: page.title}));
-    res.render('index', { recentlyViewed, labeled, themes, transitions });
+  const p = [
+    Promise.all(pinnedPages.map(id => confluency.getPage(id).then(pickSummary))),
+    confluency.search('label=miniseminar').then(data => _.map(data, pickSummary))
+  ];
+  return Promise.all(p).then(([pinned, labeled]) => {
+    res.render('index', { pinned, recentlyViewed, labeled, themes, transitions });
   });
 });
-
-function sanitizeImageSrc(imageSrc) {
-  if (!imageSrc.startsWith(host)) return imageSrc;
-  return imageSrc.slice(host.length);
-}
 
 function convertImageSrcSet(baseUrl, imageSrcSet) {
   return imageSrcSet.split(',').map(src => baseUrl + '/image' + src).join(',');

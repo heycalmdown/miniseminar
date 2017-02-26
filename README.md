@@ -32,12 +32,13 @@ Open your preferred browser and type `localhost:3000/page/:your-confluence-page-
 
 You can override configs with environment variables.
 
-Name     | Notes
--------- | -----
-HOST     | http(s)://your.host.name:port
-CONTEXT  | You can set this with '' (empty string) when you don't have context trailing after the hostname.
-USERNAME |
-PASSWORD |
+Name         | Notes
+------------ | -----
+HOST         | http(s)://your.host.name:port
+CONTEXT      | You can set this with '' (empty string) when you don't have context trailing after the hostname.
+USERNAME     |
+PASSWORD     |
+PINNED_PAGES | You can pin your notice pages. Comma-separated ids. 
  
 ```
 $ docker run -d -p 3000:3000 \
