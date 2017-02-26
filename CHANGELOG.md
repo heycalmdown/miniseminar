@@ -1,10 +1,20 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/heycalmdown/miniseminar/compare/v1.1.1...v1.2.0) (2017-02-26)
+
+
+### Features
+
+* **home:** pin pages at top of the homepage ([c862ac6](https://github.com/heycalmdown/miniseminar/commit/c862ac6))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/heycalmdown/miniseminar/compare/v1.1.0...v1.1.1) (2017-02-19)
 
 
 ### Features
 
-* **home:** add a GitHub button ([ccf0b8b](https://github.com/heycalmdown/miniseminar/commit/ccf0b8b))
+* **home:** add a GitHub button ([6a7d4b7](https://github.com/heycalmdown/miniseminar/commit/6a7d4b7))
 
 
 
