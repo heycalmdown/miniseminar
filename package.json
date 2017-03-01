@@ -12,7 +12,7 @@
     "release": "conventional-github-releaser -p angular"
   },
   "dependencies": {
-    "body-parser": "~1.16.1",
+    "body-parser": "~1.17.0",
     "cheerio": "~0.22.0",
     "confluency": "^0.4.2",
     "cookie-parser": "~1.4.3",
