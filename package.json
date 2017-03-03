@@ -18,9 +18,9 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.1",
     "express": "~4.14.1",
-    "jade": "~1.11.0",
     "lodash": "^4.17.4",
     "morgan": "~1.8.1",
+    "pug": "^2.0.0-beta11",
     "superagent": "^3.4.4"
   },
   "devDependencies": {
@@ -42,13 +42,14 @@
     "validate-commit-msg": {
       "scope": {
         "allowed": [
+          ".ignore",
           "readme",
           "changelog",
           "package",
           "docker",
-          "img",
           "codefactor",
-          ".ignore",
+          "app",
+          "img",
           "home"
         ],
         "validate": true
