@@ -5,7 +5,7 @@ import * as superagent from 'superagent';
 import * as url from 'url';
 import * as _ from 'lodash';
 
-import { host, sanitizeImageSrc, splitPinnedPages } from '../util';
+import { host, sanitizeImageSrc, splitPinnedPages, parseParams } from '../util';
 
 const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
@@ -75,19 +75,62 @@ function link(section) {
   });
   return $.html();
 }
-function code(section) {
-  const $ = cheerio.load(section, {xmlMode: true});
-  const script = $('.code.panel.pdl script[type=syntaxhighlighter]');
-  if (script.length === 0) return section;
+
+const LANGS = {
+  actionscript3: 'lang-actionscript',
+  'c#': 'lang-cs',
+  coldfusion: 'lang-xx',
+  jfx: 'lang-java',
+  jscript: 'lang-js',
+  text: 'lang-md',
+  powershell: 'lang-powershell',
+  sass: 'lang-scss'
+};
+
+function brushToLang(brush) {
+  return LANGS[brush] || 'lang-' + brush;
+}
+
+function codeFor58(script) {
   let code = 'nocontent';
   try {
     code = script[0].children[0].children[0].data;
   } catch (e) {
     console.error(e);
   }
-  script.parent().html(`<pre><code data-trim data-noescape class="lang-javascript" style="font-size: smaller">${code}</code></pre>`);
-  return $.html();
+  const params = parseParams(pre.data('syntaxhighlighter-params'));
+  const c = brushToLang(params.brush);
+  const s = 'font-size: smaller';
+  script.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`);
 }
+
+function codeFor59(pre) {
+  const code = pre[0].children[0].data;
+  const params = parseParams(pre.data('syntaxhighlighter-params'));
+  const c = brushToLang(params.brush);
+  const s = 'font-size: smaller';
+  pre.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`)
+}
+
+function code(section) {
+  const $ = cheerio.load(section, {xmlMode: true});
+
+  // for confluence-5.8
+  const script = $('.code.panel.pdl script[type=syntaxhighlighter]');
+  if (script.length !== 0) {
+    codeFor58(script);
+    return $.html();
+  }
+
+  // for confluence-5.9
+  const pre = $('.codeContent.panelContent.pdl pre');
+  if (pre.length !== 0) {
+    codeFor59(pre);
+    return $.html();
+  }
+  return section;
+}
+
 function fragment(section) {
   const $ = cheerio.load(section);
   const liList = $('li');

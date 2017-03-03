@@ -24,4 +24,12 @@ describe('miniseminar', () => {
     expect(splitPinnedPages('')).toEqual([]);
     expect(splitPinnedPages()).toEqual([]);
   });
+  it('should parse params', () => {
+    expect(parseParams('brush: js; gutter: false; theme: Confluence'))
+      .toEqual({
+        brush: 'js',
+        gutter: 'false',
+        theme: 'Confluence'
+      });
+  })
 });
