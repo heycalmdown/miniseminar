@@ -22,19 +22,19 @@ block content
       ul
         each i in pinned
           li
-            a(href="/page/#{i.id}")= i.title
+            a(href=`/page/${i.id}`)= i.title
 
     h1 Recently viewed
     ul
       each i in recentlyViewed
         li
-          a(href="/page/#{i.id}")= i.title
+          a(href=`/page/${i.id}`)= i.title
 
     h1 Labeled as #miniseminar
     ul
       each i in labeled
         li
-          a(href="/page/#{i.id}")= i.title
+          a(href=`/page/${i.id}`)= i.title
 
   div.division
     p Query: 
@@ -43,13 +43,13 @@ block content
     ul
       each i in themes
         li
-          a(onclick="setTheme('#{i}')")= i
+          a(onclick=`setTheme('${i}')`)= i
 
     h1 Transitions
     ul
       each i in transitions
         li
-          a(onclick="setTransition('#{i}')")= i
+          a(onclick=`setTransition('${i}')`)= i
 
     div.
       <!-- Place this tag where you want the button to render. -->
