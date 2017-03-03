@@ -50,6 +50,7 @@
           "codefactor",
           "app",
           "img",
+          "code",
           "home"
         ],
         "validate": true
