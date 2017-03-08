@@ -51,6 +51,7 @@
           "app",
           "img",
           "code",
+          "plugin",
           "home"
         ],
         "validate": true

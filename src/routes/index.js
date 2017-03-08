@@ -2,7 +2,7 @@ import express from 'express';
 import Confluency from 'confluency';
 import * as cheerio from 'cheerio'; 
 import * as superagent from 'superagent';
-import * as url from 'url';
+import * as querystring from 'querystring';
 import * as _ from 'lodash';
 
 import { host, sanitizeImageSrc, splitPinnedPages, parseParams } from '../util';
@@ -64,6 +64,26 @@ function attached(req) {
     return $.html();
   };
 }
+
+function gliffy(req) {
+  return (section) => {
+    const $ = cheerio.load(section);
+    const imgs = $('img');
+    if (imgs.length === 0) return section;
+    imgs.map((i, el) => {
+      const img = $(el);
+      if (img.attr('class').trim() !== 'gliffy-image') return section;
+      const imageSrc = img.attr('src');
+      img.attr('src', req.baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+      const imageSrcSet = img.attr('srcset');
+      if (imageSrcSet) {
+        img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
+      }
+    });
+    return $.html();
+  };
+}
+
 function link(section) {
   const $ = cheerio.load(section);
   const aList = $('a');
@@ -163,6 +183,7 @@ router.get('/page/:id', (req, res, next) => {
     function map(section) {
       return [
         attached(req),
+        gliffy(req),
         link,
         code,
         fragment,
@@ -178,7 +199,8 @@ router.get('/page/:id', (req, res, next) => {
 });
 
 router.get(/\/image\/(.*)/, (req, res, next) => {
-  const request = superagent.get(`${host}/${req.params[0]}?${req.query}`);
+  const uri = `${host}/${encodeURI(req.params[0])}?${querystring.stringify(req.query)}`;
+  const request = superagent.get(uri);
   return confluency.auth(request).pipe(res);
 });
 
