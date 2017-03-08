@@ -48,6 +48,7 @@
           "package",
           "docker",
           "codefactor",
+          "test",
           "app",
           "img",
           "code",
