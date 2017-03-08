@@ -48,9 +48,11 @@
           "package",
           "docker",
           "codefactor",
+          "test",
           "app",
           "img",
           "code",
+          "plugin",
           "home"
         ],
         "validate": true

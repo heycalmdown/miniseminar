@@ -1,4 +1,4 @@
-import { sanitizeImageSrc, setHost, splitPinnedPages } from '../util';
+import { sanitizeImageSrc, setHost, splitPinnedPages, parseParams } from '../util';
 
 describe('miniseminar', () => {
   setHost('https://confluency.atlassian.net');
