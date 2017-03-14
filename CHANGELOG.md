@@ -1,3 +1,20 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/heycalmdown/miniseminar/compare/v1.2.0...v1.3.0) (2017-03-14)
+
+
+### Bug Fixes
+
+* **code:** syntax highlight doesn't work from 5.9 (#16) ([63b57e0](https://github.com/heycalmdown/miniseminar/commit/63b57e0)), closes [#2](https://github.com/heycalmdown/miniseminar/issues/2)
+* **package:** update body-parser to version 1.17.0 (#12) ([0673f6d](https://github.com/heycalmdown/miniseminar/commit/0673f6d))
+* **test:** broken test ([cdab49b](https://github.com/heycalmdown/miniseminar/commit/cdab49b))
+
+
+### Features
+
+* **plugin:** add support Gliffy ([dd7c93b](https://github.com/heycalmdown/miniseminar/commit/dd7c93b)), closes [#17](https://github.com/heycalmdown/miniseminar/issues/17)
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/heycalmdown/miniseminar/compare/v1.1.1...v1.2.0) (2017-02-26)
 
