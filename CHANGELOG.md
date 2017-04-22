@@ -1,3 +1,19 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/heycalmdown/miniseminar/compare/v1.3.0...v1.4.0) (2017-04-22)
+
+
+### Bug Fixes
+
+* **package:** update confluency to version 0.5.0 ([dd028a5](https://github.com/heycalmdown/miniseminar/commit/dd028a5))
+
+
+### Features
+
+* **plugin:** add mermaid support ([1a4abb9](https://github.com/heycalmdown/miniseminar/commit/1a4abb9)), closes [#15](https://github.com/heycalmdown/miniseminar/issues/15)
+* **plugin:** p and img also can be fragmented ([546378f](https://github.com/heycalmdown/miniseminar/commit/546378f)), closes [#20](https://github.com/heycalmdown/miniseminar/issues/20) [#21](https://github.com/heycalmdown/miniseminar/issues/21)
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/heycalmdown/miniseminar/compare/v1.2.0...v1.3.0) (2017-03-14)
 
