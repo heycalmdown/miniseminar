@@ -61,3 +61,9 @@ Table            | Use Confluence table as usual
 Fragments        | Ends a sentence with `⏎`(unicode return symbol)
 Theming          | Use a query parameter `?theme=black`
 Transition Style | Use a query parameter `?transition=slide`
+
+
+## Plugins
+
+* [Gliffy](https://marketplace.atlassian.com/plugins/com.gliffy.integration.confluence/cloud/overview) supports Cloud and Server
+* [Mermaid](https://marketplace.atlassian.com/plugins/org.anvard.atlassian.mermaid-plugin/server/overview) supports Server only
