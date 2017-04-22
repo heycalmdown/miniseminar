@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio'; 
 
-import { host, sanitizeImageSrc, parseParams } from './util';
+import { convertImageSrcSet, host, sanitizeImageSrc, parseParams } from './util';
 
 export function mermaid(section) {
   const $ = cheerio.load(section);
@@ -119,18 +119,34 @@ export function code(section) {
   return section;
 }
 
-export function fragment(section) {
-  const $ = cheerio.load(section);
-  const liList = $('li');
-  if (liList.length === 0) return section;
-  liList.each((i, el) => {
+function fragmentTags($, tagName) {
+  const list = $(tagName);
+  if (list.length === 0) return;
+  list.each((i, el) => {
     el = $(el);
     let text = el.text();
     if (text.includes('⏎')) {
-      text = text.replace('⏎', '');
-      el.text(text);
-      el.addClass('fragment');
+      const children = el.children();
+      if (children.length === 0) {
+        text = text.replace('⏎', '');
+        el.text(text);
+        el.addClass('fragment');
+        return;
+      }
+      children.each((i, child) => {
+        if (child.next.data && child.next.data.includes('⏎')) {
+          const text = child.next.data.replace('⏎', '');
+          child.next.data = text;
+          $(child).addClass('fragment');
+        }
+      });
     }
   });
+}
+
+export function fragment(section) {
+  const $ = cheerio.load(section);
+  fragmentTags($, 'li');
+  fragmentTags($, 'p');
   return $.html();
 }
