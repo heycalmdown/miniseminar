@@ -42,10 +42,6 @@ router.get('/', (req, res, next) => {
   });
 });
 
-function convertImageSrcSet(baseUrl, imageSrcSet) {
-  return imageSrcSet.split(',').map(src => baseUrl + '/image' + src).join(',');
-}
-
 router.get('/page/:id', (req, res, next) => {
   const theme = THEMES[req.query.theme] || 'black';
   const transition = TRANSITIONS[req.query.transition] || 'slide';

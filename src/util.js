@@ -6,6 +6,10 @@ export function setHost(h) {
   host = h;
 }
 
+export function convertImageSrcSet(baseUrl, imageSrcSet) {
+  return imageSrcSet.split(',').map(src => baseUrl + '/image' + src).join(',');
+}
+
 export function splitPinnedPages(PINNED_PAGES) {
   if (!PINNED_PAGES) return [];
   return PINNED_PAGES.split(',');

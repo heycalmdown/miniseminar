@@ -1,4 +1,7 @@
-import { sanitizeImageSrc, setHost, splitPinnedPages, parseParams } from '../util';
+import * as cheerio from 'cheerio'; 
+
+import { convertImageSrcSet, sanitizeImageSrc, setHost, splitPinnedPages, parseParams } from '../util';
+import { fragment } from '../plugin';
 
 describe('miniseminar', () => {
   setHost('https://confluency.atlassian.net');
@@ -13,9 +16,7 @@ describe('miniseminar', () => {
   it('should convert image-srcset', () => {
     const input = '/wiki/download/thumbnails/2097156/IMG_7444.jpg?width=550&height=500 2x,/wiki/download/thumbnails/2097156/IMG_7444.jpg?width=275&height=250 1x';
     const output = '/image/wiki/download/thumbnails/2097156/IMG_7444.jpg?width=550&height=500 2x,/image/wiki/download/thumbnails/2097156/IMG_7444.jpg?width=275&height=250 1x';
-    function convertImageSrcSet(baseUrl, imageSrcSet) {
-      return imageSrcSet.split(',').map(src => baseUrl + '/image' + src).join(',');
-    }
+
     expect(convertImageSrcSet('', input)).toEqual(output);
   });
   it('should split PINNED_PAGES', () => {
@@ -31,5 +32,25 @@ describe('miniseminar', () => {
         gutter: 'false',
         theme: 'Confluence'
       });
-  })
+  });
+  it('should convert ⏎ in the <li>', () => {
+    const a = '<ul><li>first⏎</li><li>second⏎</li><li>third⏎</li></ul>';
+    expect(fragment(a))
+      .toEqual(
+        '<ul><li class="fragment">first</li><li class="fragment">second</li><li class="fragment">third</li></ul>'
+      );
+  });
+  it('should convert ⏎ in the <p>', () => {
+    const a = '<p>first⏎</p><p>second⏎</p><p>third⏎</p>';
+    expect(fragment(a))
+      .toEqual(
+        '<p class="fragment">first</p><p class="fragment">second</p><p class="fragment">third</p>'
+      );
+  });
+  it('should convert ⏎ with around an image', () => {
+    expect(fragment(
+        `<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-external-resource" height="250" src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82" data-image-src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82"></span>&#x23CE;</p>`))
+      .toEqual(
+        `<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size fragment"><img class="confluence-embedded-image confluence-external-resource" height="250" src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82" data-image-src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82"></span></p>`);
+  });
 });
