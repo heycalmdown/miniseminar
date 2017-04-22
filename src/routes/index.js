@@ -5,7 +5,7 @@ import * as querystring from 'querystring';
 import * as _ from 'lodash';
 
 import { host, splitPinnedPages } from '../util';
-import { attached, gliffy, link, code, fragment } from '../plugin';
+import { attached, mermaid, gliffy, link, code, fragment } from '../plugin';
 
 const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
@@ -63,6 +63,7 @@ router.get('/page/:id', (req, res, next) => {
       return [
         attached(req),
         gliffy(req),
+        mermaid,
         link,
         code,
         fragment,

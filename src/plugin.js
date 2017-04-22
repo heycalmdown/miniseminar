@@ -2,6 +2,18 @@ import * as cheerio from 'cheerio';
 
 import { host, sanitizeImageSrc, parseParams } from './util';
 
+export function mermaid(section) {
+  const $ = cheerio.load(section);
+  const mermaids = $('.mermaid');
+  if (mermaids.length === 0) return section;
+  mermaids.each((i, el) => {
+    const mermaid = $(el);
+    mermaid.css('background-color', 'white');
+    mermaid.css('font-size', '18px');
+  });
+  return $.html();
+}
+
 export function attached(req) {
   return (section) => {
     const $ = cheerio.load(section);
