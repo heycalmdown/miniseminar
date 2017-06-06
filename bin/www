@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../dist/app');
+var app = require('../lib/app');
 var debug = require('debug')('miniseminar:server');
 var http = require('http');
 

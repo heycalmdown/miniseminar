@@ -1,11 +1,10 @@
-FROM    node:6-alpine
+FROM    node:8-alpine
 WORKDIR /app
 
-COPY    README.md package.json /app/
-RUN     npm i --progress=false
+COPY    README.md package.json package-lock.json /app/
+RUN     npm i --production
 
-COPY    src /app/src/
-RUN     npm run babel
+COPY    lib     /app/lib
 
 COPY    bin     /app/bin
 COPY    public  /app/public
