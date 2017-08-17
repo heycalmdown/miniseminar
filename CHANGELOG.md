@@ -1,3 +1,23 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/heycalmdown/miniseminar/compare/v1.4.0...v1.5.0) (2017-08-17)
+
+
+### Bug Fixes
+
+* **package:** update cheerio to version 1.0.0-rc.2 ([555ac1c](https://github.com/heycalmdown/miniseminar/commit/555ac1c))
+* **package:** update confluency to version 0.6.0 ([0a1cd06](https://github.com/heycalmdown/miniseminar/commit/0a1cd06))
+* **package:** update debug to version 3.0.0 ([f77b104](https://github.com/heycalmdown/miniseminar/commit/f77b104))
+* `⏎` can broke during parse a slide ([494d5b7](https://github.com/heycalmdown/miniseminar/commit/494d5b7))
+* missing package-lock update ([32fc3e6](https://github.com/heycalmdown/miniseminar/commit/32fc3e6))
+
+
+### Features
+
+* **plugin:** support emoticon ([046fc6f](https://github.com/heycalmdown/miniseminar/commit/046fc6f)), closes [#25](https://github.com/heycalmdown/miniseminar/issues/25)
+* support cookie-auth ([a74699a](https://github.com/heycalmdown/miniseminar/commit/a74699a))
+
+
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/heycalmdown/miniseminar/compare/v1.3.0...v1.4.0) (2017-04-22)
 
