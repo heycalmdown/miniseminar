@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "conventional-changelog-cli": "^2.0.0",
-    "conventional-github-releaser": "^2.0.0",
+    "conventional-github-releaser": "^3.0.0",
     "husky": "^0.14.0",
     "jasmine": "^3.0.0",
     "validate-commit-msg": "^2.11.1"
