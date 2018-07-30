@@ -1,3 +1,14 @@
+<a name="1.5.1"></a>
+## [1.5.1](https://github.com/heycalmdown/miniseminar/compare/v1.5.0...v1.5.1) (2018-07-30)
+
+
+### Bug Fixes
+
+* can't show attached images if context has given ([292fb59](https://github.com/heycalmdown/miniseminar/commit/292fb59))
+* styled text with ⏎ in a <li> fails ([2a2cfad](https://github.com/heycalmdown/miniseminar/commit/2a2cfad)), closes [#31](https://github.com/heycalmdown/miniseminar/issues/31)
+
+
+
 <a name="1.5.0"></a>
 # [1.5.0](https://github.com/heycalmdown/miniseminar/compare/v1.4.0...v1.5.0) (2017-08-17)
 
