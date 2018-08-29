@@ -41,7 +41,8 @@ export function backgroundImage(section: Section): Section {
   imgs.map((_i, el) => {
     const img = $(el);
     const originalSize = !img.attr('height') && !img.attr('width');
-    if (!originalSize) return;
+    const isEmoticon = img.hasClass('emoticon');
+    if (!originalSize || isEmoticon) return;
     section.background = img.data('image-src');
     img.remove();
   });
