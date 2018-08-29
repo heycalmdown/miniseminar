@@ -1,9 +1,9 @@
 import * as cheerio from 'cheerio';
 
-import { convertImageSrcSet, host, sanitizeImageSrc, parseParams } from './util';
+import { Section, convertImageSrcSet, host, sanitizeImageSrc, parseParams } from './util';
 
-export function mermaid(section) {
-  const $ = cheerio.load(section);
+export function mermaid(section: Section): Section {
+  const $ = cheerio.load(section.body);
   const mermaids = $('.mermaid');
   if (mermaids.length === 0) return section;
   mermaids.each((i, el) => {
@@ -11,15 +11,16 @@ export function mermaid(section) {
     mermaid.css('background-color', 'white');
     mermaid.css('font-size', '18px');
   });
-  return $.html();
+  section.body = $.html();
+  return section;
 }
 
 export function attached(req) {
-  return (section) => {
-    const $ = cheerio.load(section);
+  return (section: Section): Section => {
+    const $ = cheerio.load(section.body);
     const imgs = $('img');
     if (imgs.length === 0) return section;
-    imgs.map((i, el) => {
+    imgs.map((_i, el) => {
       const img = $(el);
       if (img.data('linked-resource-type') !== 'attachment') return section;
       const imageSrc = img.data('image-src');
@@ -29,13 +30,28 @@ export function attached(req) {
         img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
       }
     });
-    return $.html();
+    section.body = $.html();
+    return section;
   };
 }
 
+export function backgroundImage(section: Section): Section {
+  const $ = cheerio.load(section.body);
+  const imgs = $('img');
+  imgs.map((_i, el) => {
+    const img = $(el);
+    const originalSize = !img.attr('height') && !img.attr('width');
+    if (!originalSize) return;
+    section.background = img.data('image-src');
+    img.remove();
+  });
+  section.body = $.html();
+  return section;
+}
+
 export function emoticon(req) {
-  return (section) => {
-    const $ = cheerio.load(section);
+  return (section: Section): Section => {
+    const $ = cheerio.load(section.body);
     const imgs = $('img.emoticon');
     if (imgs.length === 0) return section;
     imgs.map((i, el) => {
@@ -47,13 +63,14 @@ export function emoticon(req) {
       img.css('margin', '5px');
       img.css('vertical-align', 'bottom');
     });
-    return $.html();
+    section.body = $.html();
+    return section;
   };
 }
 
 export function gliffy(req) {
-  return (section) => {
-    const $ = cheerio.load(section);
+  return (section: Section): Section => {
+    const $ = cheerio.load(section.body);
     const imgs = $('img');
     if (imgs.length === 0) return section;
     imgs.map((i, el) => {
@@ -66,12 +83,13 @@ export function gliffy(req) {
         img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
       }
     });
-    return $.html();
+    section.body = $.html();
+    return section;
   };
 }
 
-export function link(section) {
-  const $ = cheerio.load(section);
+export function link(section: Section): Section {
+  const $ = cheerio.load(section.body);
   const aList = $('a');
   if (aList.length === 0) return section;
   aList.each((i, el) => {
@@ -79,7 +97,8 @@ export function link(section) {
       el.attribs.href = host + el.attribs.href;
     }
   });
-  return $.html();
+  section.body = $.html();
+  return section;
 }
 
 const LANGS = {
@@ -116,21 +135,23 @@ function codeFor59(pre) {
   pre.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`)
 }
 
-export function code(section) {
-  const $ = cheerio.load(section, {xmlMode: true});
+export function code(section: Section): Section {
+  const $ = cheerio.load(section.body, {xmlMode: true});
 
   // for confluence-5.8
   const script = $('.code.panel.pdl script[type=syntaxhighlighter]');
   if (script.length !== 0) {
     codeFor58(script);
-    return $.html();
+    section.body = $.html();
+    return section;
   }
 
   // for confluence-5.9
   const pre = $('.codeContent.panelContent.pdl pre');
   if (pre.length !== 0) {
     codeFor59(pre);
-    return $.html();
+    section.body = $.html();
+    return section;
   }
   return section;
 }
@@ -184,9 +205,10 @@ function fragmentTags($, tagName) {
   });
 }
 
-export function fragment(section) {
-  const $ = cheerio.load(section);
+export function fragment(section: Section): Section {
+  const $ = cheerio.load(section.body);
   fragmentLi($);
   fragmentTags($, 'p');
-  return $.html();
+  section.body = $.html();
+  return section;
 }

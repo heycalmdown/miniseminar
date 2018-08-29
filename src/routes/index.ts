@@ -3,8 +3,8 @@ import Confluency from 'confluency';
 import * as querystring from 'querystring';
 import * as _ from 'lodash';
 
-import { host, splitPinnedPages } from '../util';
-import { attached, mermaid, gliffy, link, code, fragment, emoticon } from '../plugin';
+import { Section, host, splitPinnedPages } from '../util';
+import { attached, backgroundImage, mermaid, gliffy, link, code, fragment, emoticon } from '../plugin';
 
 const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
@@ -50,21 +50,23 @@ router.get('/page/:id', (req, res, next) => {
     recentlyViewed.push({id: req.params.id, title: page.title});
     recentlyViewed = _.uniqBy(recentlyViewed, 'id');
 
-    const contents = page.body.view.value.replace(/ \//g, '/');
-    let sections = contents.split('<hr/><hr/>').map(section => {
-      if (section.indexOf('<hr/>') === -1) return section;
-      return {sections: section.split('<hr/>')};
+    const contents: string = page.body.view.value.replace(/ \//g, '/');
+    let sections: Section[] = contents.split('<hr/><hr/>').map(body => {
+      if (body.indexOf('<hr/>') === -1) return { body };
+      return { body: '', sections: body.split('<hr/>').map(s => ({ body: s }))};
     });
-    function map(section) {
-      return [
+    function map(section: Section) {
+      const middlewares: ((s: Section) => Section)[] = [
         attached(req),
+        backgroundImage,
         emoticon(req),
         gliffy(req),
         mermaid,
         link,
         code,
-        fragment,
-      ].reduce((section, middleware) => middleware(section), section);
+        fragment
+      ];
+      return middlewares.reduce((section, middleware) => middleware(section), section);
     }
     sections = sections.map(section => {
       if (!section.sections) return map(section);
