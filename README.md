@@ -55,13 +55,15 @@ $ docker run -d -p 3000:3000 \
 Type             | Notes
 ---------------- | -----
 Slide            | Add double `horizontal rule` from the Confluence editor. Or you can use four dashses(----) twice.
-Vertical Slice   | Add single `horizontal rule`
+[Vertical Slice](https://revealjs.com/#/2)   | Add single `horizontal rule`
 Links            | Use any link style which Confluence support
 Image            | Use any image style wich Confluence support including attachment
+[Background Image](https://revealjs.com/#/10/1) | Make the last image as a background if you reset an image size to original
 Table            | Use Confluence table as usual
-Fragments        | Ends a sentence with `⏎`(unicode return symbol)
-Theming          | Use a query parameter `?theme=black`
-Transition Style | Use a query parameter `?transition=slide`
+[Fragments](https://revealjs.com/#/fragments)        | Ends a sentence with `⏎`(unicode return symbol)
+[Code Highlight](https://revealjs.com/#/13) | Use Confluence code block |
+[Theming](https://revealjs.com/#/themes)          | Use a query parameter `?theme=black`
+[Transition Style](https://revealjs.com/#/transitions) | Use a query parameter `?transition=slide`
 
 
 ## Plugins

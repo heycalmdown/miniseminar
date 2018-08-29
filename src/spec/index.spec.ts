@@ -2,7 +2,7 @@ import { convertImageSrcSet, sanitizeImageSrc, setHost, splitPinnedPages, parseP
 import { fragment } from '../plugin';
 
 function html(inner) {
-  return '<html><head></head><body>' + inner + '</body></html>';
+  return { body: '<html><head></head><body>' + inner + '</body></html>' };
 }
 
 describe('miniseminar', () => {
@@ -35,40 +35,36 @@ describe('miniseminar', () => {
         theme: 'Confluence'
       });
   });
-  describe('fragements', () => {
+  describe('fragments', () => {
     it('should convert ⏎ in the <li>', () => {
-      const a = '<ul><li>first⏎</li><li>second⏎</li><li>third⏎</li></ul>';
-      expect(fragment(a))
-        .toEqual(html(
-          '<ul><li class="fragment">first</li><li class="fragment">second</li><li class="fragment">third</li></ul>'
-        ));
+      const body = '<ul><li>first⏎</li><li>second⏎</li><li>third⏎</li></ul>';
+      expect(fragment({ body })).toEqual(html(
+        '<ul><li class="fragment">first</li><li class="fragment">second</li><li class="fragment">third</li></ul>'
+      ));
     });
     it('should convert ⏎ in the <p>', () => {
-      const a = '<p>first⏎</p><p>second⏎</p><p>third⏎</p>';
-      expect(fragment(a))
-        .toEqual(html(
-          '<p class="fragment">first</p><p class="fragment">second</p><p class="fragment">third</p>'
-        ));
+      const body = '<p>first⏎</p><p>second⏎</p><p>third⏎</p>';
+      expect(fragment({ body })).toEqual(html(
+        '<p class="fragment">first</p><p class="fragment">second</p><p class="fragment">third</p>'
+      ));
     });
     it('should convert ⏎ with around an image', () => {
-      expect(fragment(
-          `<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-external-resource" height="250" src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82" data-image-src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82"></span>&#x23CE;</p>`))
-        .toEqual(html(
-          `<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size fragment"><img class="confluence-embedded-image confluence-external-resource" height="250" src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82" data-image-src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82"></span></p>`));
+      const body = `<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-external-resource" height="250" src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82" data-image-src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82"></span>&#x23CE;</p>`;
+      expect(fragment({ body })).toEqual(html(
+        `<p><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size fragment"><img class="confluence-embedded-image confluence-external-resource" height="250" src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82" data-image-src="http://cfile25.uf.tistory.com/image/23028948558D5D6844CB82"></span></p>`
+      ));
     });
     it('should split by <li>s', () => {
-      const a = '<ul><li>A⏎</li><li>B⏎</li><li><strong>C with style</strong>, C as plain⏎</li></ul>';
-      expect(fragment(a))
-        .toEqual(html(
-          '<ul><li class="fragment">A</li><li class="fragment">B</li><li class="fragment"><strong>C with style</strong>, C as plain</li></ul>'
-        ));
+      const body = '<ul><li>A⏎</li><li>B⏎</li><li><strong>C with style</strong>, C as plain⏎</li></ul>';
+      expect(fragment({ body })).toEqual(html(
+        '<ul><li class="fragment">A</li><li class="fragment">B</li><li class="fragment"><strong>C with style</strong>, C as plain</li></ul>'
+      ));
     });
     it('should convert nested <li>s', () => {
-      const a = '<ul><li><strong>ha</strong>ha⏎<ul><li>he<strong>he</strong>⏎</li></ul></li></ul>';
-      expect(fragment(a))
-        .toEqual(html(
-          '<ul><li class="fragment"><strong>ha</strong>ha<ul><li class="fragment">he<strong>he</strong></li></ul></li></ul>'
-        ));
+      const body = '<ul><li><strong>ha</strong>ha⏎<ul><li>he<strong>he</strong>⏎</li></ul></li></ul>';
+      expect(fragment({ body })).toEqual(html(
+        '<ul><li class="fragment"><strong>ha</strong>ha<ul><li class="fragment">he<strong>he</strong></li></ul></li></ul>'
+      ));
     });
   })
 });

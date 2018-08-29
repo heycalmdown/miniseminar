@@ -1,5 +1,11 @@
 import * as _ from 'lodash';
 
+export interface Section {
+  body: string;
+  sections?: Section[];
+  background?: string;
+}
+
 export let host = process.env.HOST;
 let context = process.env.CONTEXT;
 

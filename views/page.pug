@@ -14,11 +14,11 @@ html
       .slides
         each section in sections
           unless section.sections
-            section!=section
+            section(data-background=section.background)!=section.body
           else
             section
               each subSection in section.sections
-                section!=subSection
+                section(data-background=subSection.background)!=subSection.body
 
     script(src=`/lib/js/head.min.js`)
     script(src=`/js/reveal.js`)
