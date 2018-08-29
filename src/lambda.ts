@@ -1,4 +1,4 @@
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 function parseParams(params) {
   if (!params) return {};
@@ -24,7 +24,7 @@ function convertUrl(path, req) {
 }
 
 function mapEvent(event) {
-  const req = {};
+  const req: any = {};
   req.queryParams = {};
 
   if (event.queryString) {
@@ -59,7 +59,7 @@ function mapEvent(event) {
 }
 
 const app = require('./app');
-exports.handler = function (event, context) {
+export function handler(event, context) {
   const http = require('http')
   const req = mapEvent(event);
   const res = new http.ServerResponse(req);

@@ -1,11 +1,10 @@
-const express = require('express');
-const Confluency = require('confluency').default;
-const superagent = require('superagent');
-const querystring = require('querystring');
-const _ = require('lodash');
+import * as express from 'express';
+import Confluency from 'confluency';
+import * as querystring from 'querystring';
+import * as _ from 'lodash';
 
-const { host, splitPinnedPages } = require('../util');
-const { attached, mermaid, gliffy, link, code, fragment, emoticon } = require('../plugin');
+import { host, splitPinnedPages } from '../util';
+import { attached, mermaid, gliffy, link, code, fragment, emoticon } from '../plugin';
 
 const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
@@ -13,7 +12,7 @@ const password = process.env.PASSWORD;
 const authType = process.env.AUTHTYPE || 'basic';
 const pinnedPages = splitPinnedPages(process.env.PINNED_PAGES);
 
-const router = express.Router();
+export const router = express.Router();
 const confluency = new Confluency({host, context, username, password, authType});
 
 const themes = [
@@ -26,7 +25,7 @@ const transitions = [
 const THEMES = _.zipObject(themes, themes.map(o => o));
 const TRANSITIONS = _.zipObject(transitions, transitions.map(o => o));
 
-let recentlyViewed = [];
+let recentlyViewed: {id: string, title: string}[] = [];
 
 function pickSummary(page) {
   return {id: page.id, title: page.title};
@@ -85,5 +84,3 @@ router.get(/\/emoticon\/(.*)/, (req, res, next) => {
   const uri = `/${encodeURI(req.params[0])}?${querystring.stringify(req.query)}`;
   return confluency.newRequest('get', uri, true).pipe(res);
 });
-
-module.exports = router;

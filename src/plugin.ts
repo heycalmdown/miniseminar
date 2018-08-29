@@ -1,8 +1,8 @@
-const cheerio = require('cheerio');
+import * as cheerio from 'cheerio';
 
-const { convertImageSrcSet, host, sanitizeImageSrc, parseParams } = require('./util');
+import { convertImageSrcSet, host, sanitizeImageSrc, parseParams } from './util';
 
-function mermaid(section) {
+export function mermaid(section) {
   const $ = cheerio.load(section);
   const mermaids = $('.mermaid');
   if (mermaids.length === 0) return section;
@@ -14,7 +14,7 @@ function mermaid(section) {
   return $.html();
 }
 
-function attached(req) {
+export function attached(req) {
   return (section) => {
     const $ = cheerio.load(section);
     const imgs = $('img');
@@ -33,7 +33,7 @@ function attached(req) {
   };
 }
 
-function emoticon(req) {
+export function emoticon(req) {
   return (section) => {
     const $ = cheerio.load(section);
     const imgs = $('img.emoticon');
@@ -51,7 +51,7 @@ function emoticon(req) {
   };
 }
 
-function gliffy(req) {
+export function gliffy(req) {
   return (section) => {
     const $ = cheerio.load(section);
     const imgs = $('img');
@@ -70,7 +70,7 @@ function gliffy(req) {
   };
 }
 
-function link(section) {
+export function link(section) {
   const $ = cheerio.load(section);
   const aList = $('a');
   if (aList.length === 0) return section;
@@ -104,10 +104,8 @@ function codeFor58(script) {
   } catch (e) {
     console.error(e);
   }
-  const params = parseParams(pre.data('syntaxhighlighter-params'));
-  const c = brushToLang(params.brush);
   const s = 'font-size: smaller';
-  script.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`);
+  script.parent().html(`<pre><code data-trim data-noescape style="${s}">${code}</code></pre>`);
 }
 
 function codeFor59(pre) {
@@ -118,7 +116,7 @@ function codeFor59(pre) {
   pre.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`)
 }
 
-function code(section) {
+export function code(section) {
   const $ = cheerio.load(section, {xmlMode: true});
 
   // for confluence-5.8
@@ -137,7 +135,7 @@ function code(section) {
   return section;
 }
 
-function fragmentLi($) {
+export function fragmentLi($) {
   const list = $('li');
   if (list.length === 0) return;
   list.each((i, el) => {
@@ -186,19 +184,9 @@ function fragmentTags($, tagName) {
   });
 }
 
-function fragment(section) {
+export function fragment(section) {
   const $ = cheerio.load(section);
   fragmentLi($);
   fragmentTags($, 'p');
   return $.html();
 }
-
-module.exports = {
-  mermaid,
-  attached,
-  gliffy,
-  emoticon,
-  link,
-  code,
-  fragment
-};
