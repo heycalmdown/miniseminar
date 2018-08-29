@@ -1,5 +1,21 @@
+<a name="1.6.0"></a>
+# [1.6.0](https://github.com/heycalmdown/miniseminar/compare/v1.5.1...v1.6.0) (2018-08-29)
+
+
+### Bug Fixes
+
+* emoticon disappeared ([b1841ac](https://github.com/heycalmdown/miniseminar/commit/b1841ac))
+* multiple codeblock failure ([1d9e828](https://github.com/heycalmdown/miniseminar/commit/1d9e828))
+
+
+### Features
+
+* add support of background image ([680f0db](https://github.com/heycalmdown/miniseminar/commit/680f0db))
+
+
+
 <a name="1.5.1"></a>
-## [1.5.1](https://github.com/heycalmdown/miniseminar/compare/v1.5.0...v1.5.1) (2018-07-30)
+## [1.5.1](https://github.com/heycalmdown/miniseminar/compare/1.5.1...v1.5.1) (2018-07-30)
 
 
 ### Bug Fixes
@@ -51,8 +67,8 @@
 
 ### Bug Fixes
 
-* **code:** syntax highlight doesn't work from 5.9 (#16) ([63b57e0](https://github.com/heycalmdown/miniseminar/commit/63b57e0)), closes [#2](https://github.com/heycalmdown/miniseminar/issues/2)
-* **package:** update body-parser to version 1.17.0 (#12) ([0673f6d](https://github.com/heycalmdown/miniseminar/commit/0673f6d))
+* **code:** syntax highlight doesn't work from 5.9 ([#16](https://github.com/heycalmdown/miniseminar/issues/16)) ([63b57e0](https://github.com/heycalmdown/miniseminar/commit/63b57e0)), closes [#2](https://github.com/heycalmdown/miniseminar/issues/2)
+* **package:** update body-parser to version 1.17.0 ([#12](https://github.com/heycalmdown/miniseminar/issues/12)) ([0673f6d](https://github.com/heycalmdown/miniseminar/commit/0673f6d))
 * **test:** broken test ([cdab49b](https://github.com/heycalmdown/miniseminar/commit/cdab49b))
 
 
