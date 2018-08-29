@@ -113,27 +113,32 @@ const LANGS = {
   sass: 'lang-scss'
 };
 
-function brushToLang(brush) {
+function brushToLang(brush: string) {
   return LANGS[brush] || 'lang-' + brush;
 }
 
-function codeFor58(script) {
-  let code = 'nocontent';
-  try {
-    code = script[0].children[0].children[0].data;
-  } catch (e) {
-    console.error(e);
-  }
-  const s = 'font-size: smaller';
-  script.parent().html(`<pre><code data-trim data-noescape style="${s}">${code}</code></pre>`);
+function codeFor58($: CheerioStatic, scripts: Cheerio) {
+  scripts.map((_i, elem) => {
+    const script = $(elem);
+    try {
+      const code = elem.children[0].children[0].data || 'nocontent';
+      const s = 'font-size: smaller';
+      script.parent().html(`<pre><code data-trim data-noescape style="${s}">${code}</code></pre>`);
+    } catch (e) {
+      console.error(e);
+    }
+  });
 }
 
-function codeFor59(pre) {
-  const code = pre[0].children[0].data;
-  const params = parseParams(pre.data('syntaxhighlighter-params'));
-  const c = brushToLang(params.brush);
-  const s = 'font-size: smaller';
-  pre.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`)
+function codeFor59($: CheerioStatic, pres: Cheerio) {
+  pres.map((_i, elem) => {
+    const pre = $(elem);
+    const code = elem.children[0].data || 'nocontent';
+    const params = parseParams(pre.data('syntaxhighlighter-params'));
+    const c = brushToLang(params.brush);
+    const s = 'font-size: smaller';
+    pre.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`)
+  });
 }
 
 export function code(section: Section): Section {
@@ -142,7 +147,7 @@ export function code(section: Section): Section {
   // for confluence-5.8
   const script = $('.code.panel.pdl script[type=syntaxhighlighter]');
   if (script.length !== 0) {
-    codeFor58(script);
+    codeFor58($, script);
     section.body = $.html();
     return section;
   }
@@ -150,7 +155,7 @@ export function code(section: Section): Section {
   // for confluence-5.9
   const pre = $('.codeContent.panelContent.pdl pre');
   if (pre.length !== 0) {
-    codeFor59(pre);
+    codeFor59($, pre);
     section.body = $.html();
     return section;
   }
