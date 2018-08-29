@@ -1,22 +1,22 @@
-const _ = require('lodash');
+import * as _ from 'lodash';
 
-let host = process.env.HOST;
+export let host = process.env.HOST;
 let context = process.env.CONTEXT;
 
-function setHost(h) {
+export function setHost(h) {
   host = h;
 }
 
-function convertImageSrcSet(baseUrl, imageSrcSet) {
+export function convertImageSrcSet(baseUrl, imageSrcSet) {
   return imageSrcSet.split(',').map(src => baseUrl + '/image' + sanitizeImageSrc(src)).join(',');
 }
 
-function splitPinnedPages(PINNED_PAGES) {
+export function splitPinnedPages(PINNED_PAGES?) {
   if (!PINNED_PAGES) return [];
   return PINNED_PAGES.split(',');
 }
 
-function sanitizeImageSrc(imageSrc) {
+export function sanitizeImageSrc(imageSrc) {
   if (imageSrc.startsWith(host)) {
     imageSrc = imageSrc.slice(host.length);
   }
@@ -26,20 +26,11 @@ function sanitizeImageSrc(imageSrc) {
   return imageSrc;
 }
 
-function parseParams(params) {
-  return _.merge(...params.split(';').map(param => {
+export function parseParams(params: string) {
+  return _.merge({}, ...params.split(';').map(param => {
     const [key, value] = param.split(':');
     return {
       [key.trim()]: value.trim()
     };
   }));
-}
-
-module.exports = {
-  host,
-  setHost,
-  convertImageSrcSet,
-  splitPinnedPages,
-  sanitizeImageSrc,
-  parseParams
 }

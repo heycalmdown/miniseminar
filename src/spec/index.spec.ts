@@ -1,7 +1,5 @@
-const cheerio = require('cheerio');
-
-const { convertImageSrcSet, sanitizeImageSrc, setHost, splitPinnedPages, parseParams } = require('../util');
-const { fragment } = require('../plugin');
+import { convertImageSrcSet, sanitizeImageSrc, setHost, splitPinnedPages, parseParams } from '../util';
+import { fragment } from '../plugin';
 
 function html(inner) {
   return '<html><head></head><body>' + inner + '</body></html>';
