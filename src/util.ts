@@ -32,7 +32,7 @@ export function sanitizeImageSrc(imageSrc) {
   return imageSrc;
 }
 
-export function parseParams(params: string) {
+export function parseParams(params: string): {[key: string]: string} {
   return _.merge({}, ...params.split(';').map(param => {
     const [key, value] = param.split(':');
     return {
