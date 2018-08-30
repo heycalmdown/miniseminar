@@ -1,3 +1,13 @@
+<a name="1.6.1"></a>
+## [1.6.1](https://github.com/heycalmdown/miniseminar/compare/v1.6.0...v1.6.1) (2018-08-30)
+
+
+### Bug Fixes
+
+* docker build fail ([d6263a6](https://github.com/heycalmdown/miniseminar/commit/d6263a6))
+
+
+
 <a name="1.6.0"></a>
 # [1.6.0](https://github.com/heycalmdown/miniseminar/compare/v1.5.1...v1.6.0) (2018-08-29)
 
@@ -67,8 +77,8 @@
 
 ### Bug Fixes
 
-* **code:** syntax highlight doesn't work from 5.9 ([#16](https://github.com/heycalmdown/miniseminar/issues/16)) ([63b57e0](https://github.com/heycalmdown/miniseminar/commit/63b57e0)), closes [#2](https://github.com/heycalmdown/miniseminar/issues/2)
-* **package:** update body-parser to version 1.17.0 ([#12](https://github.com/heycalmdown/miniseminar/issues/12)) ([0673f6d](https://github.com/heycalmdown/miniseminar/commit/0673f6d))
+* **code:** syntax highlight doesn't work from 5.9 (#16) ([63b57e0](https://github.com/heycalmdown/miniseminar/commit/63b57e0)), closes [#2](https://github.com/heycalmdown/miniseminar/issues/2)
+* **package:** update body-parser to version 1.17.0 (#12) ([0673f6d](https://github.com/heycalmdown/miniseminar/commit/0673f6d))
 * **test:** broken test ([cdab49b](https://github.com/heycalmdown/miniseminar/commit/cdab49b))
 
 
