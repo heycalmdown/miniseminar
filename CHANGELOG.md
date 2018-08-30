@@ -1,3 +1,13 @@
+<a name="1.6.2"></a>
+## [1.6.2](https://github.com/heycalmdown/miniseminar/compare/v1.6.1...v1.6.2) (2018-08-30)
+
+
+### Bug Fixes
+
+* missing workdir ([3dac865](https://github.com/heycalmdown/miniseminar/commit/3dac865))
+
+
+
 <a name="1.6.1"></a>
 ## [1.6.1](https://github.com/heycalmdown/miniseminar/compare/v1.6.0...v1.6.1) (2018-08-30)
 
