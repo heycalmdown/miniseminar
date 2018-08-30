@@ -1,16 +1,24 @@
-FROM    node:8-alpine
+FROM    node:10-alpine as build
 WORKDIR /app
 
 COPY    README.md package.json package-lock.json /app/
-RUN     npm i --production
+RUN     npm i
 
-COPY    lib     /app/lib
+# Rarely edited
+COPY    bin           /app/bin
+COPY    public        /app/public
+COPY    tsconfig.json /app/
 
-COPY    bin     /app/bin
-COPY    public  /app/public
-COPY    views   /app/views
-COPY    *       /app/
+# Frequently edited
+COPY    views         /app/views
+COPY    src           /app/src
+
+RUN     npm run build
+
+RUN     npm ci --only=production
+
+FROM    node:10-alpine as release
+COPY    --from=build /app/ /app/
 
 EXPOSE  3000
-
 CMD     npm start
