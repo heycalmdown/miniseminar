@@ -18,6 +18,7 @@ RUN     npm run build
 RUN     npm ci --only=production
 
 FROM    node:10-alpine as release
+WORKDIR /app
 COPY    --from=build /app/ /app/
 
 EXPOSE  3000
