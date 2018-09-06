@@ -58,7 +58,7 @@ router.get('/page/:id', (req, res, next) => {
     function map(section: Section) {
       const middlewares: ((s: Section) => Section)[] = [
         attached(req),
-        backgroundImage,
+        backgroundImage(req),
         emoticon(req),
         gliffy(req),
         mermaid,

@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import * as _ from 'lodash';
 
 import { Section, convertImageSrcSet, host, sanitizeImageSrc, parseParams } from './util';
 
@@ -35,19 +36,29 @@ export function attached(req) {
   };
 }
 
-export function backgroundImage(section: Section): Section {
-  const $ = cheerio.load(section.body);
-  const imgs = $('img');
-  imgs.map((_i, el) => {
-    const img = $(el);
-    const originalSize = !img.attr('height') && !img.attr('width');
-    const isEmoticon = img.hasClass('emoticon');
-    if (!originalSize || isEmoticon) return;
-    section.background = img.data('image-src');
-    img.remove();
-  });
-  section.body = $.html();
-  return section;
+function hostToAbsolute(req) {
+  if (req.baseUrl) return req.baseUrl;
+  const hostFromHeaders: string = _.get(req, 'headers.host');
+  if (hostFromHeaders.startsWith('http://')) return hostFromHeaders;
+  return 'http://' + hostFromHeaders;
+}
+
+export function backgroundImage(req) {
+  return (section: Section): Section => {
+    const $ = cheerio.load(section.body);
+    const imgs = $('img');
+    imgs.map((_i, el) => {
+      const img = $(el);
+      const originalSize = !img.attr('height') && !img.attr('width');
+      const isEmoticon = img.hasClass('emoticon');
+      if (!originalSize || isEmoticon) return;
+      section.background = hostToAbsolute(req) + '/image' + sanitizeImageSrc(img.data('image-src'));
+      //section['background-image'] = req.baseUrl + '/image' + sanitizeImageSrc(img.data('image-src'));
+      img.remove();
+    });
+    section.body = $.html();
+    return section;
+  };
 }
 
 export function emoticon(req) {
