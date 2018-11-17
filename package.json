@@ -20,7 +20,7 @@
     "lodash": "^4.17.10",
     "morgan": "^1.9.0",
     "pug": "^2.0.3",
-    "superagent": "^3.8.3"
+    "superagent": "^4.0.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
