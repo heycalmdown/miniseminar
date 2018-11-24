@@ -229,3 +229,17 @@ export function fragment(section: Section): Section {
   section.body = $.html();
   return section;
 }
+
+export function unsetBlackOrWhiteFont(section: Section): Section {
+  const $ = cheerio.load(section.body);
+  const spans = $('span');
+  spans.map((_i, el) => {
+    const span = $(el);
+    const color = span.css('color');
+    if (color === 'rgb(255,255,255)' || color === 'rgb(0,0,0)') {
+      span.css('color', '');
+    }
+  });
+  section.body = $.html();
+  return section;
+}
