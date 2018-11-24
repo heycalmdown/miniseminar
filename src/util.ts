@@ -17,7 +17,7 @@ export function convertImageSrcSet(baseUrl, imageSrcSet) {
   return imageSrcSet.split(',').map(src => baseUrl + '/image' + sanitizeImageSrc(src)).join(',');
 }
 
-export function splitPinnedPages(PINNED_PAGES?) {
+export function splitPinnedPages(PINNED_PAGES?): string[] {
   if (!PINNED_PAGES) return [];
   return PINNED_PAGES.split(',');
 }

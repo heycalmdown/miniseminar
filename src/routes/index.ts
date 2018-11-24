@@ -1,5 +1,5 @@
 import * as express from 'express';
-import Confluency from 'confluency';
+import Confluency, { Content } from 'confluency';
 import * as querystring from 'querystring';
 import * as _ from 'lodash';
 
@@ -27,7 +27,7 @@ const TRANSITIONS = _.zipObject(transitions, transitions.map(o => o));
 
 let recentlyViewed: {id: string, title: string}[] = [];
 
-function pickSummary(page) {
+function pickSummary(page: Content): { id: string, title: string } {
   return {id: page.id, title: page.title};
 }
 
@@ -50,7 +50,7 @@ router.get('/page/:id', (req, res, next) => {
     recentlyViewed.push({id: req.params.id, title: page.title});
     recentlyViewed = _.uniqBy(recentlyViewed, 'id');
 
-    const contents: string = page.body.view.value.replace(/ \//g, '/');
+    const contents: string = page.body!.view!.value.replace(/ \//g, '/');
     let sections: Section[] = contents.split('<hr/><hr/>').map(body => {
       if (body.indexOf('<hr/>') === -1) return { body };
       return { body: '', sections: body.split('<hr/>').map(s => ({ body: s }))};
