@@ -65,3 +65,17 @@ html
       Reveal.addEventListener('ready', onReadyToRenderMermaid);
       Reveal.addEventListener('slidechanged', onReadyToRenderMermaid);
       mermaid.initialize({startOnLoad: false});
+      document.addEventListener('keypress', function (event) {
+        if (typeof URL === 'undefined') return;
+        const url = new URL(document.location);
+        if (!url.searchParams) return;
+        if (event.keyCode === 116) {
+          const themes = [
+            'beige', 'black', 'blood', 'league', 'moon', 'night', 'serif', 'simple', 'sky', 'solarized', 'white'
+          ];
+          const prevTheme = url.searchParams.get('theme');
+          const prevIndex = themes.indexOf(prevTheme || 'black');
+          url.searchParams.set('theme', themes[(prevIndex + 1) % themes.length]);
+          document.location = url.href;
+        }
+      }, false);
