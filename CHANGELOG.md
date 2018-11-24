@@ -1,3 +1,30 @@
+<a name="1.7.0"></a>
+# [1.7.0](https://github.com/heycalmdown/miniseminar/compare/v1.6.3...v1.7.0) (2018-11-24)
+
+
+### Bug Fixes
+
+* **package:** update debug to version 4.0.0 ([ec07428](https://github.com/heycalmdown/miniseminar/commit/ec07428))
+* **package:** update superagent to version 4.0.0 ([33292ef](https://github.com/heycalmdown/miniseminar/commit/33292ef))
+
+
+### Features
+
+* clear format when the span colored with real black or white ([e50e0d8](https://github.com/heycalmdown/miniseminar/commit/e50e0d8))
+* press t to change theme ([75d7a0c](https://github.com/heycalmdown/miniseminar/commit/75d7a0c))
+
+
+
+<a name="1.6.3"></a>
+## [1.6.3](https://github.com/heycalmdown/miniseminar/compare/v1.6.2...v1.6.3) (2018-09-06)
+
+
+### Bug Fixes
+
+* realtive background image url don't show ([3dd169e](https://github.com/heycalmdown/miniseminar/commit/3dd169e))
+
+
+
 <a name="1.6.2"></a>
 ## [1.6.2](https://github.com/heycalmdown/miniseminar/compare/v1.6.1...v1.6.2) (2018-08-30)
 
@@ -87,8 +114,8 @@
 
 ### Bug Fixes
 
-* **code:** syntax highlight doesn't work from 5.9 (#16) ([63b57e0](https://github.com/heycalmdown/miniseminar/commit/63b57e0)), closes [#2](https://github.com/heycalmdown/miniseminar/issues/2)
-* **package:** update body-parser to version 1.17.0 (#12) ([0673f6d](https://github.com/heycalmdown/miniseminar/commit/0673f6d))
+* **code:** syntax highlight doesn't work from 5.9 ([#16](https://github.com/heycalmdown/miniseminar/issues/16)) ([63b57e0](https://github.com/heycalmdown/miniseminar/commit/63b57e0)), closes [#2](https://github.com/heycalmdown/miniseminar/issues/2)
+* **package:** update body-parser to version 1.17.0 ([#12](https://github.com/heycalmdown/miniseminar/issues/12)) ([0673f6d](https://github.com/heycalmdown/miniseminar/commit/0673f6d))
 * **test:** broken test ([cdab49b](https://github.com/heycalmdown/miniseminar/commit/cdab49b))
 
 
