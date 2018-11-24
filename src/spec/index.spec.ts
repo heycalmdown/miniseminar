@@ -1,5 +1,5 @@
 import { convertImageSrcSet, sanitizeImageSrc, setHost, splitPinnedPages, parseParams } from '../util';
-import { fragment } from '../plugin';
+import { fragment, unsetBlackOrWhiteFont } from '../plugin';
 
 function html(inner) {
   return { body: '<html><head></head><body>' + inner + '</body></html>' };
@@ -66,5 +66,24 @@ describe('miniseminar', () => {
         '<ul><li class="fragment"><strong>ha</strong>ha<ul><li class="fragment">he<strong>he</strong></li></ul></li></ul>'
       ));
     });
-  })
+  });
+});
+
+describe('trouble shooting', () => {
+  it('should clear format if the span colored with real black', () => {
+    const body = '<span style="color: rgb(0,0,0);">abc</span>';
+    expect(unsetBlackOrWhiteFont({ body })).toEqual(html('<span style="">abc</span>'));
+  });
+  it('should clear format if the span colored with real white', () => {
+    const body = '<span style="color: rgb(255,255,255);">abc</span>';
+    expect(unsetBlackOrWhiteFont({ body })).toEqual(html('<span style="">abc</span>'));
+  });
+  it('should not clear format if the span colored with real white or real black', () => {
+    const body = '<span style="color: rgb(255,0,0);">abc</span>';
+    expect(unsetBlackOrWhiteFont({ body })).toEqual(html('<span style="color: rgb(255,0,0);">abc</span>'));
+  });
+  it('should clear format if the span colored with real white having children', () => {
+    const body = '<span style="color: rgb(255,255,255);">abc <a href="https://google.com">google</a></span>';
+    expect(unsetBlackOrWhiteFont({ body })).toEqual(html('<span style="">abc <a href="https://google.com">google</a></span>'));
+  });
 });

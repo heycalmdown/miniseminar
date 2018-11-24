@@ -4,7 +4,7 @@ import * as querystring from 'querystring';
 import * as _ from 'lodash';
 
 import { Section, host, splitPinnedPages } from '../util';
-import { attached, backgroundImage, mermaid, gliffy, link, code, fragment, emoticon } from '../plugin';
+import { attached, backgroundImage, mermaid, gliffy, link, code, fragment, emoticon, unsetBlackOrWhiteFont } from '../plugin';
 
 const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
@@ -64,7 +64,8 @@ router.get('/page/:id', (req, res, next) => {
         mermaid,
         link,
         code,
-        fragment
+        fragment,
+        unsetBlackOrWhiteFont
       ];
       return middlewares.reduce((section, middleware) => middleware(section), section);
     }
