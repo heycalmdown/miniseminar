@@ -6,7 +6,6 @@ RUN     npm i
 
 # Rarely edited
 COPY    bin           /app/bin
-COPY    public        /app/public
 COPY    tsconfig.json /app/
 
 # Frequently edited
