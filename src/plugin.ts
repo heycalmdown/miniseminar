@@ -104,7 +104,8 @@ export function link(section: Section): Section {
   const $ = cheerio.load(section.body);
   const aList = $('a');
   if (aList.length === 0) return section;
-  aList.each((i, el) => {
+  aList.each((_i, el) => {
+    if (!el.attribs.href) return;
     if (el.attribs.href[0] === '/') {
       el.attribs.href = host + el.attribs.href;
     }
