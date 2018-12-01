@@ -1,3 +1,14 @@
+<a name="1.7.2"></a>
+## [1.7.2](https://github.com/heycalmdown/miniseminar/compare/v1.7.1...v1.7.2) (2018-12-01)
+
+
+### Bug Fixes
+
+* docker build failed by missing /public ([81714d2](https://github.com/heycalmdown/miniseminar/commit/81714d2))
+* frontpage not shown ([bea486f](https://github.com/heycalmdown/miniseminar/commit/bea486f))
+
+
+
 <a name="1.7.1"></a>
 ## [1.7.1](https://github.com/heycalmdown/miniseminar/compare/v1.7.0...v1.7.1) (2018-11-28)
 
