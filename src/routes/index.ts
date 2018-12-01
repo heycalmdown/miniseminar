@@ -32,7 +32,7 @@ function pickSummary(page: Content): { id: string, title: string } {
 }
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', (_req, res) => {
   const p = [
     Promise.all(pinnedPages.map(id => confluency.getPage(id).then(pickSummary))),
     confluency.search('label=miniseminar').then(data => _.map(data, pickSummary))
