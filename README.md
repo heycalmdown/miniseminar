@@ -20,7 +20,7 @@ Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
 $ docker run -ti -p 3000:3000 \
       -e HOST=https://confluency.atlassian.net \
       -e CONTEXT=wiki \
-      -e AUTH=no
+      -e AUTH=no \
       heycalmdown/miniseminar
 ```
 
