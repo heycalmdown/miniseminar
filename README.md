@@ -20,12 +20,12 @@ Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
 $ docker run -ti -p 3000:3000 \
       -e HOST=https://confluency.atlassian.net \
       -e CONTEXT=wiki \
-      -e AUTH=no \
+      -e AUTHTYPE=no \
       heycalmdown/miniseminar
 ```
 
 ```
-$ HOST=https://confluency.atlassian.net CONTEXT=wiki AUTH=no node ./www/bin
+$ HOST=https://confluency.atlassian.net CONTEXT=wiki AUTHTYPE=no node ./www/bin
 ```
 
 You can get a frontpage at the `localhost:3000/`. Or open your preferred browser and type `localhost:3000/page/:your-confluence-page-id`. The page id should be a number.
