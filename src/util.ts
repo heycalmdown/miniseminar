@@ -6,7 +6,7 @@ export interface Section {
   background?: string;
 }
 
-export let host = process.env.HOST;
+export let host = process.env.HOST || '';
 let context = process.env.CONTEXT;
 
 export function setHost(h) {

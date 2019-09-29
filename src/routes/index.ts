@@ -12,6 +12,10 @@ const password = process.env.PASSWORD;
 const authType = process.env.AUTHTYPE || 'basic';
 const pinnedPages = splitPinnedPages(process.env.PINNED_PAGES);
 
+if (!(authType === 'cookie' || authType === 'basic' || authType === 'no')) {
+  throw new Error('AuthType should be one of ["cookie", "basic", "no"');
+}
+
 export const router = express.Router();
 const confluency = new Confluency({host, context, username, password, authType});
 
