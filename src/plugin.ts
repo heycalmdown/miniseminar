@@ -55,8 +55,11 @@ export function backgroundImage(req) {
 
       // backgroundImage should be URI decoded
       const backgroundImage = decodeURI(sanitizeImageSrc(img.data('image-src')));
-      section.background = hostToAbsolute(req) + '/image' + backgroundImage;
-      //section['background-image'] = req.baseUrl + '/image' + sanitizeImageSrc(img.data('image-src'));
+      if (backgroundImage.startsWith('http')) {
+        section.background = backgroundImage;
+      } else {
+        section.background = hostToAbsolute(req) + '/image' + backgroundImage;
+      }
       img.remove();
     });
     section.body = $.html();
