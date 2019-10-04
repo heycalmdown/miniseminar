@@ -8,6 +8,13 @@ html
     link(rel='stylesheet', href='https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.css')
     script(src='https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.min.js')
     script(src='https://cdn.rawgit.com/mathiasbynens/he/670991a4/he.js')
+    if printPdf
+      script.
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
 
   body
     .reveal

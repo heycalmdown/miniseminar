@@ -47,6 +47,7 @@ router.get('/', (_req, res) => {
 });
 
 router.get('/page/:id', (req, res, next) => {
+  const printPdf = req.query['print-pdf'] === '';
   const theme = THEMES[req.query.theme] || 'black';
   const transition = TRANSITIONS[req.query.transition] || 'slide';
 
@@ -78,7 +79,7 @@ router.get('/page/:id', (req, res, next) => {
       section.sections = section.sections.map(section => map(section));
       return section;
     });
-    res.render('page', { title: page.title, req, sections, theme, transition });
+    res.render('page', { title: page.title, req, sections, theme, transition, printPdf });
   }).catch(next);
 });
 
