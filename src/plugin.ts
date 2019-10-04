@@ -52,7 +52,10 @@ export function backgroundImage(req) {
       const originalSize = !img.attr('height') && !img.attr('width');
       const isEmoticon = img.hasClass('emoticon');
       if (!originalSize || isEmoticon) return;
-      section.background = hostToAbsolute(req) + '/image' + sanitizeImageSrc(img.data('image-src'));
+
+      // backgroundImage should be URI decoded
+      const backgroundImage = decodeURI(sanitizeImageSrc(img.data('image-src')));
+      section.background = hostToAbsolute(req) + '/image' + backgroundImage;
       //section['background-image'] = req.baseUrl + '/image' + sanitizeImageSrc(img.data('image-src'));
       img.remove();
     });
