@@ -6,7 +6,6 @@
     "start": "node ./bin/www",
     "build": "tsc",
     "test": "jasmine lib/spec/**/*.js",
-    "commitmsg": "validate-commit-msg",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "release": "conventional-github-releaser -p angular"
   },
@@ -59,6 +58,11 @@
         "validate": true
       },
       "autoFix": true
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg"
     }
   }
 }
