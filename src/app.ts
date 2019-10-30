@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
+import * as favicon from 'serve-favicon';
 
 import { router as routes } from './routes/index';
 import { router as users } from './routes/users';
@@ -14,6 +15,7 @@ app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+app.use(favicon(path.join(__dirname, '/public/favicon.ico')))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
