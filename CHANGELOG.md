@@ -1,4 +1,20 @@
-<a name="1.7.2"></a>
+## [1.7.3](https://github.com/heycalmdown/miniseminar/compare/v1.7.2...v1.7.3) (2019-10-30)
+
+
+### Bug Fixes
+
+* **package:** update superagent to version 5.0.2 ([5a76b58](https://github.com/heycalmdown/miniseminar/commit/5a76b58))
+* no display remote background image ([30a2762](https://github.com/heycalmdown/miniseminar/commit/30a2762))
+* no display URI encoded background ([24f7292](https://github.com/heycalmdown/miniseminar/commit/24f7292))
+
+
+### Features
+
+* favicon ([#70](https://github.com/heycalmdown/miniseminar/issues/70)) ([740c559](https://github.com/heycalmdown/miniseminar/commit/740c559))
+* support print-pdf ([#69](https://github.com/heycalmdown/miniseminar/issues/69)) ([222f7dc](https://github.com/heycalmdown/miniseminar/commit/222f7dc))
+
+
+
 ## [1.7.2](https://github.com/heycalmdown/miniseminar/compare/v1.7.1...v1.7.2) (2018-12-01)
 
 
@@ -9,7 +25,6 @@
 
 
 
-<a name="1.7.1"></a>
 ## [1.7.1](https://github.com/heycalmdown/miniseminar/compare/v1.7.0...v1.7.1) (2018-11-28)
 
 
@@ -19,7 +34,6 @@
 
 
 
-<a name="1.7.0"></a>
 # [1.7.0](https://github.com/heycalmdown/miniseminar/compare/v1.6.3...v1.7.0) (2018-11-24)
 
 
@@ -36,7 +50,6 @@
 
 
 
-<a name="1.6.3"></a>
 ## [1.6.3](https://github.com/heycalmdown/miniseminar/compare/v1.6.2...v1.6.3) (2018-09-06)
 
 
@@ -46,7 +59,6 @@
 
 
 
-<a name="1.6.2"></a>
 ## [1.6.2](https://github.com/heycalmdown/miniseminar/compare/v1.6.1...v1.6.2) (2018-08-30)
 
 
@@ -56,7 +68,6 @@
 
 
 
-<a name="1.6.1"></a>
 ## [1.6.1](https://github.com/heycalmdown/miniseminar/compare/v1.6.0...v1.6.1) (2018-08-30)
 
 
@@ -66,7 +77,6 @@
 
 
 
-<a name="1.6.0"></a>
 # [1.6.0](https://github.com/heycalmdown/miniseminar/compare/v1.5.1...v1.6.0) (2018-08-29)
 
 
@@ -82,7 +92,6 @@
 
 
 
-<a name="1.5.1"></a>
 ## [1.5.1](https://github.com/heycalmdown/miniseminar/compare/1.5.1...v1.5.1) (2018-07-30)
 
 
@@ -93,7 +102,6 @@
 
 
 
-<a name="1.5.0"></a>
 # [1.5.0](https://github.com/heycalmdown/miniseminar/compare/v1.4.0...v1.5.0) (2017-08-17)
 
 
@@ -113,7 +121,6 @@
 
 
 
-<a name="1.4.0"></a>
 # [1.4.0](https://github.com/heycalmdown/miniseminar/compare/v1.3.0...v1.4.0) (2017-04-22)
 
 
@@ -129,7 +136,6 @@
 
 
 
-<a name="1.3.0"></a>
 # [1.3.0](https://github.com/heycalmdown/miniseminar/compare/v1.2.0...v1.3.0) (2017-03-14)
 
 
@@ -146,7 +152,6 @@
 
 
 
-<a name="1.2.0"></a>
 # [1.2.0](https://github.com/heycalmdown/miniseminar/compare/v1.1.1...v1.2.0) (2017-02-26)
 
 
@@ -156,7 +161,6 @@
 
 
 
-<a name="1.1.1"></a>
 ## [1.1.1](https://github.com/heycalmdown/miniseminar/compare/v1.1.0...v1.1.1) (2017-02-19)
 
 
@@ -166,7 +170,6 @@
 
 
 
-<a name="1.1.0"></a>
 # [1.1.0](https://github.com/heycalmdown/miniseminar/compare/v1.0.2...v1.1.0) (2017-02-19)
 
 
@@ -177,7 +180,6 @@
 
 
 
-<a name="1.0.2"></a>
 ## [1.0.2](https://github.com/heycalmdown/miniseminar/compare/v1.0.1...v1.0.2) (2017-02-19)
 
 
@@ -187,12 +189,10 @@
 
 
 
-<a name="1.0.1"></a>
 ## [1.0.1](https://github.com/heycalmdown/miniseminar/compare/v1.0.0...v1.0.1) (2017-02-18)
 
 
 
-<a name="1.0.0"></a>
 # [1.0.0](https://github.com/heycalmdown/miniseminar/compare/a8db924...v1.0.0) (2017-02-18)
 
 
