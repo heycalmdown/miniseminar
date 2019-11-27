@@ -1,3 +1,12 @@
+## [1.7.4](https://github.com/heycalmdown/miniseminar/compare/v1.7.3...v1.7.4) (2019-11-27)
+
+
+### Bug Fixes
+
+* not found public/favicon.ico ([d4ac755](https://github.com/heycalmdown/miniseminar/commit/d4ac755))
+
+
+
 ## [1.7.3](https://github.com/heycalmdown/miniseminar/compare/v1.7.2...v1.7.3) (2019-10-30)
 
 
