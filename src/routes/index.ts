@@ -92,3 +92,11 @@ router.get(/\/emoticon\/(.*)/, (req, res, next) => {
   const uri = `/${encodeURI(req.params[0])}?${querystring.stringify(req.query)}`;
   return confluency.newRequest('get', uri, true).pipe(res);
 });
+
+router.get('/gist/:userId/:gistId', (req, res, next) => {
+  res.render('md', { url: `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw` });
+});
+
+router.get('/gist/:userId/:gistId/:commitHash', (req, res, next) => {
+  res.render('md', { url: `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw/${req.params.commitHash}` });
+});
