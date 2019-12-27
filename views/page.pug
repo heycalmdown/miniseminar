@@ -2,9 +2,9 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href=`/css/reveal.css`)
-    link(rel='stylesheet', href=`/css/theme/${theme || 'black'}.css`)#theme
-    link(rel='stylesheet', href=`/lib/css/zenburn.css`)
+    link(rel='stylesheet', href=`${baseUrl}/css/reveal.css`)
+    link(rel='stylesheet', href=`${baseUrl}/css/theme/${theme || 'black'}.css`)#theme
+    link(rel='stylesheet', href=`${baseUrl}/lib/css/zenburn.css`)
     link(rel='stylesheet', href='https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.css')
     script(src='https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.min.js')
     script(src='https://cdn.rawgit.com/mathiasbynens/he/670991a4/he.js')
@@ -13,7 +13,7 @@ html
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match( /print-pdf/gi ) ? '/css/print/pdf.css' : '/css/print/paper.css';
+        link.href = window.location.search.match( /print-pdf/gi ) ? `${baseUrl}/css/print/pdf.css` : `${baseUrl}/css/print/paper.css`;
         document.getElementsByTagName( 'head' )[0].appendChild( link );
 
   body
@@ -27,8 +27,7 @@ html
               each subSection in section.sections
                 section(data-background=subSection.background)!=subSection.body
 
-    script(src=`/lib/js/head.min.js`)
-    script(src=`/js/reveal.js`)
+    script(src=`${baseUrl}/js/reveal.js`)
     script.
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
@@ -41,10 +40,10 @@ html
 
         // Optional reveal.js plugins
         dependencies: [
-         { src: `/lib/js/classList.js`, condition: function() { return !document.body.classList; } },
-         { src: `/plugin/highlight/highlight.js`, async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-         { src: `/plugin/zoom-js/zoom.js`, async: true },
-         { src: `/plugin/notes/notes.js`, async: true }
+         { src: `#{baseUrl}/lib/js/classList.js`, condition: function() { return !document.body.classList; } },
+         { src: `#{baseUrl}/plugin/highlight/highlight.js`, async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+         { src: `#{baseUrl}/plugin/zoom-js/zoom.js`, async: true },
+         { src: `#{baseUrl}/plugin/notes/notes.js`, async: true }
         ]
       });
       var nextId = 0;

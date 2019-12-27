@@ -1,4 +1,5 @@
 .vscode
+up.json
 
 # local environment
 .nvmrc
