@@ -1,5 +1,5 @@
-import { convertImageSrcSet, sanitizeImageSrc, setHost, splitPinnedPages, parseParams } from '../util';
 import { fragment, unsetBlackOrWhiteFont } from '../plugin';
+import { convertImageSrcSet, parseParams, sanitizeImageSrc, setHost, splitPinnedPages } from '../util';
 
 function html(inner) {
   return { body: '<html><head></head><body>' + inner + '</body></html>' };
