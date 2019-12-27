@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 
 import { Section, convertImageSrcSet, host, sanitizeImageSrc, parseParams } from './util';
 
+const baseUrl = process.env.BASEURL || '';
+
 export function mermaid(section: Section): Section {
   const $ = cheerio.load(section.body);
   const mermaids = $('.mermaid');
@@ -25,10 +27,10 @@ export function attached(req) {
       const img = $(el);
       if (img.data('linked-resource-type') !== 'attachment') return section;
       const imageSrc = img.data('image-src');
-      img.attr('src', req.baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+      img.attr('src', req.baseUrl + baseUrl + '/image' + sanitizeImageSrc(imageSrc));
       const imageSrcSet = img.attr('srcset');
       if (imageSrcSet) {
-        img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
+        img.attr('srcset', convertImageSrcSet(req.baseUrl + baseUrl, imageSrcSet));
       }
     });
     section.body = $.html();
@@ -37,10 +39,10 @@ export function attached(req) {
 }
 
 function hostToAbsolute(req) {
-  if (req.baseUrl) return req.baseUrl;
+  if (req.baseUrl) return req.baseUrl + baseUrl;
   const hostFromHeaders: string = _.get(req, 'headers.host');
-  if (hostFromHeaders.startsWith('http://')) return hostFromHeaders;
-  return 'http://' + hostFromHeaders;
+  if (hostFromHeaders.startsWith('http://')) return hostFromHeaders + baseUrl;
+  return 'http://' + hostFromHeaders + baseUrl;
 }
 
 export function backgroundImage(req) {
@@ -75,7 +77,7 @@ export function emoticon(req) {
     imgs.map((i, el) => {
       const img = $(el);
       const imageSrc = img.attr('src');
-      img.attr('src', req.baseUrl + '/emoticon' + sanitizeImageSrc(imageSrc));
+      img.attr('src', req.baseUrl + baseUrl + '/emoticon' + sanitizeImageSrc(imageSrc));
       img.css('border', '0px');
       img.css('height', '32px');
       img.css('margin', '5px');
@@ -95,10 +97,10 @@ export function gliffy(req) {
       const img = $(el);
       if (img.attr('class').trim() !== 'gliffy-image') return section;
       const imageSrc = img.attr('src');
-      img.attr('src', req.baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+      img.attr('src', req.baseUrl + baseUrl + '/image' + sanitizeImageSrc(imageSrc));
       const imageSrcSet = img.attr('srcset');
       if (imageSrcSet) {
-        img.attr('srcset', convertImageSrcSet(req.baseUrl, imageSrcSet));
+        img.attr('srcset', convertImageSrcSet(req.baseUrl + baseUrl, imageSrcSet));
       }
     });
     section.body = $.html();

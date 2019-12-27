@@ -10,6 +10,7 @@ const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 const authType = process.env.AUTHTYPE || 'basic';
+const baseUrl = process.env.BASEURL || '';
 const pinnedPages = splitPinnedPages(process.env.PINNED_PAGES);
 
 if (!(authType === 'cookie' || authType === 'basic' || authType === 'no')) {
@@ -42,7 +43,7 @@ router.get('/', (_req, res) => {
     confluency.search('label=miniseminar').then(data => _.map(data, pickSummary))
   ];
   return Promise.all(p).then(([pinned, labeled]) => {
-    res.render('index', { pinned, recentlyViewed, labeled, themes, transitions });
+    res.render('index', { pinned, recentlyViewed, labeled, themes, transitions, baseUrl });
   });
 });
 
@@ -79,24 +80,26 @@ router.get('/page/:id', (req, res, next) => {
       section.sections = section.sections.map(section => map(section));
       return section;
     });
-    res.render('page', { title: page.title, req, sections, theme, transition, printPdf });
+    res.render('page', { title: page.title, req, sections, theme, transition, printPdf, baseUrl });
   }).catch(next);
 });
 
-router.get(/\/image\/(.*)/, (req, res, next) => {
+router.get(/\/image\/(.*)/, (req, res) => {
   const uri = `/${encodeURI(req.params[0])}?${querystring.stringify(req.query)}`;
   return confluency.newRequest('get', uri, true).pipe(res);
 });
 
-router.get(/\/emoticon\/(.*)/, (req, res, next) => {
+router.get(/\/emoticon\/(.*)/, (req, res) => {
   const uri = `/${encodeURI(req.params[0])}?${querystring.stringify(req.query)}`;
   return confluency.newRequest('get', uri, true).pipe(res);
 });
 
-router.get('/gist/:userId/:gistId', (req, res, next) => {
-  res.render('md', { url: `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw` });
+router.get('/gist/:userId/:gistId', (req, res) => {
+  const url = `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw`;
+  res.render('md', { url, baseUrl });
 });
 
-router.get('/gist/:userId/:gistId/:commitHash', (req, res, next) => {
-  res.render('md', { url: `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw/${req.params.commitHash}` });
+router.get('/gist/:userId/:gistId/:commitHash', (req, res) => {
+  const url = `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw/${req.params.commitHash}`;
+  res.render('md', { url, baseUrl });
 });
