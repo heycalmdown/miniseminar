@@ -1,10 +1,12 @@
-import * as express from 'express';
 import Confluency, { Content } from 'confluency';
-import * as querystring from 'querystring';
+import * as express from 'express';
 import * as _ from 'lodash';
+import * as querystring from 'querystring';
 
-import { Section, host, splitPinnedPages } from '../util';
-import { attached, backgroundImage, mermaid, gliffy, link, code, fragment, emoticon, unsetBlackOrWhiteFont } from '../plugin';
+import {
+  attached, backgroundImage, code, emoticon, fragment, gliffy, link, mermaid, unsetBlackOrWhiteFont
+} from '../plugin';
+import { host, Section, splitPinnedPages } from '../util';
 
 const context = process.env.CONTEXT;
 const username = process.env.USERNAME;
@@ -30,7 +32,14 @@ const transitions = [
 const THEMES = _.zipObject(themes, themes.map(o => o));
 const TRANSITIONS = _.zipObject(transitions, transitions.map(o => o));
 
-let recentlyViewed: {id: string, title: string}[] = [];
+interface Title {
+  id: string;
+  title: string;
+}
+
+type Middleware = ((s: Section) => Section);
+
+let recentlyViewed: Title[] = [];
 
 function pickSummary(page: Content): { id: string, title: string } {
   return {id: page.id, title: page.title};
@@ -62,7 +71,7 @@ router.get('/page/:id', (req, res, next) => {
       return { body: '', sections: body.split('<hr/>').map(s => ({ body: s }))};
     });
     function map(section: Section) {
-      const middlewares: ((s: Section) => Section)[] = [
+      const middlewares: Middleware[] = [
         attached(req),
         backgroundImage(req),
         emoticon(req),

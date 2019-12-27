@@ -1,7 +1,7 @@
 import * as cheerio from 'cheerio';
 import * as _ from 'lodash';
 
-import { Section, convertImageSrcSet, host, sanitizeImageSrc, parseParams } from './util';
+import { convertImageSrcSet, host, parseParams, sanitizeImageSrc, Section } from './util';
 
 const baseUrl = process.env.BASEURL || '';
 
@@ -157,7 +157,7 @@ function codeFor59($: CheerioStatic, pres: Cheerio) {
     const params = parseParams(pre.data('syntaxhighlighter-params'));
     const c = brushToLang(params.brush);
     const s = 'font-size: smaller';
-    pre.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`)
+    pre.parent().html(`<pre><code data-trim data-noescape class="${c}" style="${s}">${code}</code></pre>`);
   });
 }
 
