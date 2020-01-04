@@ -31,7 +31,7 @@ $ HOST=https://confluency.atlassian.net CONTEXT=wiki AUTHTYPE=no node ./www/bin
 
 You can get a frontpage at the `localhost:3000/`. Or open your preferred browser and type `localhost:3000/page/:your-confluence-page-id`. The page id should be a number.
 
-Test latest version [here](https://p4tc6mjgf2.execute-api.us-east-1.amazonaws.com/staging/).
+Try [latest version](https://p4tc6mjgf2.execute-api.us-east-1.amazonaws.com/staging/) and [gist demo](https://p4tc6mjgf2.execute-api.us-east-1.amazonaws.com/staging/gist/heycalmdown/4a34ed420bdbffefa91b576dc9b8a6c3#/).
 
 ## Config
 
