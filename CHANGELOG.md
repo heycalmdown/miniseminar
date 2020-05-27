@@ -1,3 +1,13 @@
+# [1.8.0](https://github.com/heycalmdown/miniseminar/compare/v1.7.4...v1.8.0) (2020-05-27)
+
+
+### Features
+
+* first shot of supporting gist ([#76](https://github.com/heycalmdown/miniseminar/issues/76)) ([fe48519](https://github.com/heycalmdown/miniseminar/commit/fe48519)), closes [#72](https://github.com/heycalmdown/miniseminar/issues/72)
+* support apex/up ([#77](https://github.com/heycalmdown/miniseminar/issues/77)) ([3f15b44](https://github.com/heycalmdown/miniseminar/commit/3f15b44))
+
+
+
 ## [1.7.4](https://github.com/heycalmdown/miniseminar/compare/v1.7.3...v1.7.4) (2019-11-27)
 
 
@@ -12,9 +22,9 @@
 
 ### Bug Fixes
 
-* **package:** update superagent to version 5.0.2 ([5a76b58](https://github.com/heycalmdown/miniseminar/commit/5a76b58))
 * no display remote background image ([30a2762](https://github.com/heycalmdown/miniseminar/commit/30a2762))
 * no display URI encoded background ([24f7292](https://github.com/heycalmdown/miniseminar/commit/24f7292))
+* **package:** update superagent to version 5.0.2 ([5a76b58](https://github.com/heycalmdown/miniseminar/commit/5a76b58))
 
 
 ### Features
@@ -116,17 +126,17 @@
 
 ### Bug Fixes
 
+* `⏎` can broke during parse a slide ([494d5b7](https://github.com/heycalmdown/miniseminar/commit/494d5b7))
+* missing package-lock update ([32fc3e6](https://github.com/heycalmdown/miniseminar/commit/32fc3e6))
 * **package:** update cheerio to version 1.0.0-rc.2 ([555ac1c](https://github.com/heycalmdown/miniseminar/commit/555ac1c))
 * **package:** update confluency to version 0.6.0 ([0a1cd06](https://github.com/heycalmdown/miniseminar/commit/0a1cd06))
 * **package:** update debug to version 3.0.0 ([f77b104](https://github.com/heycalmdown/miniseminar/commit/f77b104))
-* `⏎` can broke during parse a slide ([494d5b7](https://github.com/heycalmdown/miniseminar/commit/494d5b7))
-* missing package-lock update ([32fc3e6](https://github.com/heycalmdown/miniseminar/commit/32fc3e6))
 
 
 ### Features
 
-* **plugin:** support emoticon ([046fc6f](https://github.com/heycalmdown/miniseminar/commit/046fc6f)), closes [#25](https://github.com/heycalmdown/miniseminar/issues/25)
 * support cookie-auth ([a74699a](https://github.com/heycalmdown/miniseminar/commit/a74699a))
+* **plugin:** support emoticon ([046fc6f](https://github.com/heycalmdown/miniseminar/commit/046fc6f)), closes [#25](https://github.com/heycalmdown/miniseminar/issues/25)
 
 
 
@@ -207,9 +217,9 @@
 
 ### Bug Fixes
 
-* build fail on travis ([a8db924](https://github.com/heycalmdown/miniseminar/commit/a8db924))
 * **img:** can't show multiple images ([49a7266](https://github.com/heycalmdown/miniseminar/commit/49a7266)), closes [#1](https://github.com/heycalmdown/miniseminar/issues/1)
 * **img:** lack of support of img[srcset] ([4741166](https://github.com/heycalmdown/miniseminar/commit/4741166))
+* build fail on travis ([a8db924](https://github.com/heycalmdown/miniseminar/commit/a8db924))
 
 
 
