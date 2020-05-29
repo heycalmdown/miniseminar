@@ -21,7 +21,7 @@
     "lodash": ">=4.17.11",
     "morgan": "^1.9.0",
     "pug": "^3.0.0",
-    "reveal.js": "^4.0.0",
+    "reveal.js": "^4.0.1",
     "serve-favicon": "^2.5.0",
     "superagent": "^5.0.2",
     "snyk": "^1.330.2"
