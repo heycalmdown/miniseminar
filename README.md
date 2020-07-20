@@ -2,6 +2,7 @@
 
 [![dockeri.co](http://dockeri.co/image/heycalmdown/miniseminar)](https://registry.hub.docker.com/heycalmdown/miniseminar/)
 
+![Node.js CI](https://github.com/heycalmdown/miniseminar/workflows/Node.js%20CI/badge.svg)
 [![Build Status](https://travis-ci.org/heycalmdown/miniseminar.svg?branch=release-1.0)](https://travis-ci.org/heycalmdown/miniseminar)
 
 [![Dependency Status](https://david-dm.org/heycalmdown/miniseminar/status.svg)](https://david-dm.org/heycalmdown/miniseminar)
