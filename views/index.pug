@@ -35,6 +35,7 @@ block content
       each i in labeled
         li
           a(href=`${baseUrl}/page/${i.id}`)= i.title
+          | &nbsp;(#{i.modified})
 
   div.division
     p Query: 

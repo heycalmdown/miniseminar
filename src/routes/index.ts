@@ -1,7 +1,13 @@
 import Confluency, { Content } from 'confluency';
+import * as dayjs from 'dayjs';
+import * as duration from 'dayjs/plugin/duration';
+import * as relativeTime from 'dayjs/plugin/relativeTime';
 import * as express from 'express';
 import * as _ from 'lodash';
 import * as querystring from 'querystring';
+
+dayjs.extend(duration);
+dayjs.extend(relativeTime);
 
 import {
   attached, backgroundImage, code, emoticon, fragment, gliffy, link, mermaid, unsetBlackOrWhiteFont
@@ -9,7 +15,7 @@ import {
 import { host, Section, splitPinnedPages } from '../util';
 
 const context = process.env.CONTEXT;
-const username = process.env.USERNAME;
+const username = process.env.USER_NAME || process.env.USERNAME;
 const password = process.env.PASSWORD;
 const authType = process.env.AUTHTYPE || 'basic';
 const baseUrl = process.env.BASEURL || '';
@@ -41,15 +47,19 @@ type Middleware = ((s: Section) => Section);
 
 let recentlyViewed: Title[] = [];
 
-function pickSummary(page: Content): { id: string, title: string } {
-  return {id: page.id, title: page.title};
+function pickSummary(page: Content): { id: string, title: string, modified: string } {
+  return {
+    id: page.id,
+    title: page.title,
+    modified: dayjs.duration(dayjs().diff(dayjs(page.version!.when))).humanize(true)
+  };
 }
 
 /* GET home page. */
 router.get('/', (_req, res) => {
   const p = [
     Promise.all(pinnedPages.map(id => confluency.getPage(id).then(pickSummary))),
-    confluency.search('label=miniseminar').then(data => _.map(data, pickSummary))
+    confluency.search('label=miniseminar', {expand: ['version']}).then(data => _.map(data, pickSummary))
   ];
   return Promise.all(p).then(([pinned, labeled]) => {
     res.render('index', { pinned, recentlyViewed, labeled, themes, transitions, baseUrl });

@@ -43,6 +43,7 @@ Name         | Notes
 HOST         | http(s)://your.host.name:port
 CONTEXT      | You can set this with '' (empty string) when you don't have context trailing after the hostname.
 USERNAME     |
+USER_NAME    | An alias of `USERNAME` for zsh
 PASSWORD     |
 AUTHTYPE     | `no` \| `basic` \| `cookie`
 PINNED_PAGES | You can pin your notice pages. Comma-separated ids. 
