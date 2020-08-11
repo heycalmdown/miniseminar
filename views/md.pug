@@ -4,7 +4,7 @@ html
     title= title
     link(rel='stylesheet', href=`${baseUrl}/css/reveal.css`)
     link(rel='stylesheet', href=`${baseUrl}/css/theme/${theme || 'black'}.css`)#theme
-    link(rel='stylesheet', href=`${baseUrl}/lib/css/zenburn.css`)
+    link(rel='stylesheet', href=`${baseUrl}/plugin/highlight/zenburn.css`)
     link(rel='stylesheet', href='https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.css')
     script(src='https://cdn.rawgit.com/knsv/mermaid/7.0.0/dist/mermaid.min.js')
     script(src='https://cdn.rawgit.com/mathiasbynens/he/670991a4/he.js')
@@ -21,7 +21,11 @@ html
       .slides
         section(data-markdown=url)
 
-    script(src=`${baseUrl}/js/reveal.js`)
+    script(src=`${baseUrl}/js/reveal.js` )
+    script(src=`${baseUrl}/plugin/markdown/markdown.js`)
+    script(src=`${baseUrl}/plugin/highlight/highlight.js`)
+    script(src=`${baseUrl}/plugin/notes/notes.js`)
+    script(src=`${baseUrl}/plugin/zoom/zoom.js`)
     script.
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
@@ -32,15 +36,7 @@ html
 
         transition: '#{transition || "slide"}', // none/fade/slide/convex/concave/zoom
 
-        // Optional reveal.js plugins
-        dependencies: [
-         { src: `#{baseUrl}/plugin/markdown/marked.js`, async: true },
-         { src: `#{baseUrl}/plugin/markdown/markdown.js`, async: true },
-         { src: `#{baseUrl}/lib/js/classList.js`, condition: function() { return !document.body.classList; } },
-         { src: `#{baseUrl}/plugin/highlight/highlight.js`, async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-         { src: `#{baseUrl}/plugin/zoom-js/zoom.js`, async: true },
-         { src: `#{baseUrl}/plugin/notes/notes.js`, async: true }
-        ]
+        plugins: [ RevealMarkdown, RevealHighlight, RevealZoom, RevealNotes ],
       });
       var nextId = 0;
       function onReadyToRenderMermaid(event) {

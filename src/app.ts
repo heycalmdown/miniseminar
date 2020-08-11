@@ -19,8 +19,8 @@ app.use(favicon(path.join(__dirname, '../public/favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/css', express.static(path.join(__dirname, '../node_modules/reveal.js/css')));
-app.use('/js', express.static(path.join(__dirname, '../node_modules/reveal.js/js')));
+app.use('/css', express.static(path.join(__dirname, '../node_modules/reveal.js/dist')));
+app.use('/js', express.static(path.join(__dirname, '../node_modules/reveal.js/dist')));
 app.use('/lib', express.static(path.join(__dirname, '../node_modules/reveal.js/lib')));
 app.use('/plugin', express.static(path.join(__dirname, '../node_modules/reveal.js/plugin')));
 
