@@ -95,7 +95,8 @@ export function gliffy(req) {
     if (imgs.length === 0) return section;
     imgs.map((i, el) => {
       const img = $(el);
-      if (img.attr('class').trim() !== 'gliffy-image') return section;
+      const imgClass = img.attr('class');
+      if (!imgClass || imgClass.trim() !== 'gliffy-image') return section;
       const imageSrc = img.attr('src');
       img.attr('src', req.baseUrl + baseUrl + '/image' + sanitizeImageSrc(imageSrc));
       const imageSrcSet = img.attr('srcset');
