@@ -68,8 +68,8 @@ router.get('/', (_req, res) => {
 
 router.get('/page/:id', (req, res, next) => {
   const printPdf = req.query['print-pdf'] === '';
-  const theme = THEMES[req.query.theme] || 'black';
-  const transition = TRANSITIONS[req.query.transition] || 'slide';
+  const theme = typeof req.query.theme === 'string' && THEMES[req.query.theme] || 'black';
+  const transition = typeof req.query.transition === 'string' && TRANSITIONS[req.query.transition] || 'slide';
 
   confluency.getPage(req.params.id, ['body.view']).then(page => {
     recentlyViewed.push({id: req.params.id, title: page.title});
