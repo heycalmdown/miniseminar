@@ -1,17 +1,19 @@
 import { fragment, unsetBlackOrWhiteFont } from '../plugin';
 import { convertImageSrcSet, parseParams, sanitizeImageSrc, setHost, splitPinnedPages } from '../util';
 
-function html(inner) {
+function html(inner: string) {
   return { body: '<html><head></head><body>' + inner + '</body></html>' };
 }
 
 describe('miniseminar', () => {
   setHost('https://confluency.atlassian.net');
 
-  it('should sanitize image-src to handle various confluence version', () => {
+  it('should sanitize image-src', () => {
     const uri1 = 'https://confluency.atlassian.net/wiki/download/attachments/2097156/IMG_7444.jpg?version=1&modificationDate=1456043588519&cacheVersion=1&api=v2';
-    expect(sanitizeImageSrc(uri1)).toEqual('/wiki/download/attachments/2097156/IMG_7444.jpg?version=1&modificationDate=1456043588519&cacheVersion=1&api=v2');
-
+    const SANITIZED = '/wiki/download/attachments/2097156/IMG_7444.jpg?version=1&modificationDate=1456043588519&cacheVersion=1&api=v2';
+    expect(sanitizeImageSrc(uri1)).toEqual(SANITIZED);
+  });
+  it('should not sanitize image-src when it comes to short url', () => {
     const url2 = '/download/attachments/58065931/image2017-2-16%2016%3A28%3A32.png?version=1&modificationDate=1487230128000&api=v2';
     expect(sanitizeImageSrc(url2)).toEqual(url2);
   });
@@ -21,10 +23,20 @@ describe('miniseminar', () => {
 
     expect(convertImageSrcSet('', input)).toEqual(output);
   });
-  it('should split PINNED_PAGES', () => {
+  it('should split PINNED_PAGES with a comma', () => {
     expect(splitPinnedPages('123,456')).toEqual(['123', '456']);
+  });
+  it('should split PINNED_PAGES with multiple commas', () => {
+    expect(splitPinnedPages('123,456,789')).toEqual(['123', '456', '789']);
+  });
+  it('should handle PINNED_PAGES safely without commas', () => {
     expect(splitPinnedPages('123')).toEqual(['123']);
+    expect(splitPinnedPages()).toEqual([]);
+  });
+  it('should handle PINNED_PAGES safely with empty string', () => {
     expect(splitPinnedPages('')).toEqual([]);
+  });
+  it('should handle omitted PINNED_PAGES safely', () => {
     expect(splitPinnedPages()).toEqual([]);
   });
   it('should parse params', () => {

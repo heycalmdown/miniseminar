@@ -9,20 +9,20 @@ export interface Section {
 export let host = process.env.HOST || '';
 const context = process.env.CONTEXT;
 
-export function setHost(h) {
+export function setHost(h: string) {
   host = h;
 }
 
-export function convertImageSrcSet(baseUrl, imageSrcSet) {
+export function convertImageSrcSet(baseUrl: string, imageSrcSet: string) {
   return imageSrcSet.split(',').map(src => baseUrl + '/image' + sanitizeImageSrc(src)).join(',');
 }
 
-export function splitPinnedPages(PINNED_PAGES?): string[] {
+export function splitPinnedPages(PINNED_PAGES?: string): string[] {
   if (!PINNED_PAGES) return [];
   return PINNED_PAGES.split(',');
 }
 
-export function sanitizeImageSrc(imageSrc) {
+export function sanitizeImageSrc(imageSrc: string) {
   if (imageSrc.startsWith(host)) {
     imageSrc = imageSrc.slice(host.length);
   }

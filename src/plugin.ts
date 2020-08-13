@@ -74,9 +74,10 @@ export function emoticon(req) {
     const $ = cheerio.load(section.body);
     const imgs = $('img.emoticon');
     if (imgs.length === 0) return section;
-    imgs.map((i, el) => {
+    imgs.each((_i, el) => {
       const img = $(el);
       const imageSrc = img.attr('src');
+      if (!imageSrc) return;
       img.attr('src', req.baseUrl + baseUrl + '/emoticon' + sanitizeImageSrc(imageSrc));
       img.css('border', '0px');
       img.css('height', '32px');
@@ -93,12 +94,16 @@ export function gliffy(req) {
     const $ = cheerio.load(section.body);
     const imgs = $('img');
     if (imgs.length === 0) return section;
-    imgs.map((i, el) => {
+    imgs.each((_i, el) => {
       const img = $(el);
-      const imgClass = img.attr('class');
-      if (!imgClass || imgClass.trim() !== 'gliffy-image') return section;
+      const imageClass = img.attr('class');
+      if (!imageClass || imageClass.trim() !== 'gliffy-image') {
+        return;
+      }
       const imageSrc = img.attr('src');
-      img.attr('src', req.baseUrl + baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+      if (imageSrc) {
+        img.attr('src', req.baseUrl + baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+      }
       const imageSrcSet = img.attr('srcset');
       if (imageSrcSet) {
         img.attr('srcset', convertImageSrcSet(req.baseUrl + baseUrl, imageSrcSet));
