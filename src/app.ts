@@ -4,6 +4,8 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as path from 'path';
 import * as favicon from 'serve-favicon';
+// tslint:disable-next-line: no-var-requires
+require('express-async-errors');
 
 import { router as routes } from './routes/index';
 import { router as users } from './routes/users';
