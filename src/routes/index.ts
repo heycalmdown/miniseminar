@@ -62,7 +62,7 @@ router.get('/', (_req, res) => {
     confluency.search('label=miniseminar', {expand: ['version']}).then(data => _.map(data, pickSummary))
   ];
   return Promise.all(p).then(([pinned, labeled]) => {
-    res.render('index', { pinned, recentlyViewed, labeled, themes, transitions, baseUrl });
+    res.render('home', { pinned, recentlyViewed, labeled, themes, transitions, baseUrl });
   });
 });
 
@@ -99,7 +99,7 @@ router.get('/page/:id', (req, res, next) => {
       section.sections = section.sections.map(section => map(section));
       return section;
     });
-    res.render('page', { title: page.title, req, sections, theme, transition, printPdf, baseUrl });
+    res.render('slides', { title: page.title, req, sections, theme, transition, printPdf, baseUrl });
   }).catch(next);
 });
 
@@ -115,10 +115,10 @@ router.get(/\/emoticon\/(.*)/, (req, res) => {
 
 router.get('/gist/:userId/:gistId', (req, res) => {
   const url = `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw`;
-  res.render('md', { url, baseUrl });
+  res.render('slides', { url, baseUrl, md: true });
 });
 
 router.get('/gist/:userId/:gistId/:commitHash', (req, res) => {
   const url = `https://gist.githubusercontent.com/${req.params.userId}/${req.params.gistId}/raw/${req.params.commitHash}`;
-  res.render('md', { url, baseUrl });
+  res.render('slides', { url, baseUrl, md: true });
 });

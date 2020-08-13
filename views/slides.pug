@@ -19,20 +19,29 @@ html
   body
     .reveal
       .slides
-        each section in sections
-          unless section.sections
-            section(data-background=section.background)!=section.body
-          else
-            section
-              each subSection in section.sections
-                section(data-background=subSection.background)!=subSection.body
+        if md
+          section(data-markdown=url)
+        else
+          each section in sections
+            unless section.sections
+              section(data-background=section.background)!=section.body
+            else
+              section
+                each subSection in section.sections
+                  section(data-background=subSection.background)!=subSection.body
 
     script(src=`${baseUrl}/js/reveal.js` )
+    if md
+      script(src=`${baseUrl}/plugin/markdown/markdown.js`)
     script(src=`${baseUrl}/plugin/highlight/highlight.js`)
     script(src=`${baseUrl}/plugin/notes/notes.js`)
     script(src=`${baseUrl}/plugin/zoom/zoom.js`)
     script.
-      // https://github.com/hakimel/reveal.js#configuration
+      var plugins = [RevealHighlight, RevealZoom, RevealNotes];
+      if (typeof RevealMarkdown !== 'undefined') {
+        plugins.push(RevealMarkdown);
+      }
+      // https://revealjs.com/config/
       Reveal.initialize({
         controls: true,
         progress: true,
@@ -41,7 +50,7 @@ html
 
         transition: '#{transition || "slide"}', // none/fade/slide/convex/concave/zoom
 
-        plugins: [ RevealHighlight, RevealZoom, RevealNotes ],
+        plugins: plugins
       });
       var nextId = 0;
       function onReadyToRenderMermaid(event) {
