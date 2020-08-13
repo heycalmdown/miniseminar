@@ -8,11 +8,9 @@ import * as favicon from 'serve-favicon';
 require('express-async-errors');
 
 import { router as routes } from './routes/index';
-import { router as users } from './routes/users';
 
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'pug');
 
@@ -27,16 +25,12 @@ app.use('/lib', express.static(path.join(__dirname, '../node_modules/reveal.js/l
 app.use('/plugin', express.static(path.join(__dirname, '../node_modules/reveal.js/plugin')));
 
 app.use('/', routes);
-app.use('/users', users);
 
-// catch 404 and forward to error handler
 app.use((_req, _res, next) => {
   const err = new Error('Not Found');
   (err as any).status = 404;
   next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
