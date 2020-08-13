@@ -8,7 +8,7 @@
 [![Dependency Status](https://david-dm.org/heycalmdown/miniseminar/status.svg)](https://david-dm.org/heycalmdown/miniseminar)
 [![CodeFactor](https://www.codefactor.io/repository/github/heycalmdown/miniseminar/badge)](https://www.codefactor.io/repository/github/heycalmdown/miniseminar)
 [![Code Inspector](https://www.code-inspector.com/project/2465/status/svg)](https://www.code-inspector.com/project/dashboard/2465)
-
+[![Known Vulnerabilities](https://snyk.io/test/github/heycalmdown/miniseminar/badge.svg?targetFile=package.json)](https://snyk.io/test/github/heycalmdown/miniseminar?targetFile=package.json)
 
 Confluence as a backend -> expressjs -> reveal.js as a presentation -> Profit!
 
