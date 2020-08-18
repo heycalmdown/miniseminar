@@ -25,7 +25,7 @@
     "pug": "3.0.0",
     "reveal.js": "4.0.2",
     "serve-favicon": "2.5.0",
-    "snyk": "1.332.0",
+    "snyk": "1.377.1",
     "superagent": "5.3.1"
   },
   "devDependencies": {
