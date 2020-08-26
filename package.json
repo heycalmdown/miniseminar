@@ -7,9 +7,7 @@
     "build": "tsc",
     "test": "jasmine lib/spec/**/*.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "release": "conventional-github-releaser -p angular",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "release": "conventional-github-releaser -p angular"
   },
   "dependencies": {
     "body-parser": "1.19.0",
@@ -25,7 +23,6 @@
     "pug": "3.0.0",
     "reveal.js": "4.0.2",
     "serve-favicon": "2.5.0",
-    "snyk": "1.377.1",
     "superagent": "5.3.1"
   },
   "devDependencies": {
@@ -70,6 +67,5 @@
     "hooks": {
       "commit-msg": "validate-commit-msg"
     }
-  },
-  "snyk": true
+  }
 }
