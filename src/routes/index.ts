@@ -4,7 +4,7 @@ import * as duration from 'dayjs/plugin/duration';
 import * as relativeTime from 'dayjs/plugin/relativeTime';
 import * as express from 'express';
 import * as _ from 'lodash';
-import * as querystring from 'querystring';
+import * as qs from 'qs';
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
@@ -103,13 +103,13 @@ router.get('/page/:id', async (req, res) => {
 
 // serve an image as an attachment from a confluence server
 router.get(/\/image\/(.*)/, (req, res) => {
-  const uri = `/${encodeURI(req.params[0])}?${querystring.stringify(req.query)}`;
+  const uri = `/${encodeURI(req.params[0])}?${qs.stringify(req.query)}`;
   return confluency.newRequest('get', uri, true).pipe(res);
 });
 
 // serve an emoticon from a confluence server
 router.get(/\/emoticon\/(.*)/, (req, res) => {
-  const uri = `/${encodeURI(req.params[0])}?${querystring.stringify(req.query)}`;
+  const uri = `/${encodeURI(req.params[0])}?${qs.stringify(req.query)}`;
   return confluency.newRequest('get', uri, true).pipe(res);
 });
 
