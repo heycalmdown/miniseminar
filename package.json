@@ -34,7 +34,7 @@
     "@types/jasmine": "3.5.14",
     "@types/lodash": "4.14.161",
     "@types/morgan": "1.9.1",
-    "@types/qs": "6.9.4",
+    "@types/qs": "6.9.5",
     "conventional-changelog-cli": "2.1.0",
     "conventional-github-releaser": "3.1.5",
     "husky": "4.3.0",
