@@ -32,7 +32,7 @@
     "@types/cookie-parser": "1.4.2",
     "@types/express": "4.17.9",
     "@types/jasmine": "3.6.1",
-    "@types/lodash": "4.14.162",
+    "@types/lodash": "4.14.165",
     "@types/morgan": "1.9.1",
     "@types/qs": "6.9.5",
     "conventional-changelog-cli": "2.1.0",
