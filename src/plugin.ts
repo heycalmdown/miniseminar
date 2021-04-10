@@ -3,7 +3,8 @@ import * as _ from 'lodash';
 
 import { convertImageSrcSet, host, parseParams, sanitizeImageSrc, Section } from './util';
 
-const baseUrl = process.env.BASEURL || '';
+const BASEURL = process.env.BASEURL || '';
+const PROTOCOL = process.env.PROTOCOL ?? 'https';
 
 export function mermaid(section: Section): Section {
   const $ = cheerio.load(section.body);
@@ -27,10 +28,10 @@ export function attached(req) {
       const img = $(el);
       if (img.data('linked-resource-type') !== 'attachment') return section;
       const imageSrc = img.data('image-src');
-      img.attr('src', req.baseUrl + baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+      img.attr('src', req.baseUrl + BASEURL + '/image' + sanitizeImageSrc(imageSrc));
       const imageSrcSet = img.attr('srcset');
       if (imageSrcSet) {
-        img.attr('srcset', convertImageSrcSet(req.baseUrl + baseUrl, imageSrcSet));
+        img.attr('srcset', convertImageSrcSet(req.baseUrl + BASEURL, imageSrcSet));
       }
     });
     section.body = $.html();
@@ -39,10 +40,10 @@ export function attached(req) {
 }
 
 function hostToAbsolute(req) {
-  if (req.baseUrl) return req.baseUrl + baseUrl;
+  if (req.baseUrl) return req.baseUrl + BASEURL;
   const hostFromHeaders: string = _.get(req, 'headers.host');
-  if (hostFromHeaders.startsWith('http://')) return hostFromHeaders + baseUrl;
-  return 'http://' + hostFromHeaders + baseUrl;
+  if (hostFromHeaders.startsWith('http')) return hostFromHeaders + BASEURL;
+  return PROTOCOL + '://' + hostFromHeaders + BASEURL;
 }
 
 export function backgroundImage(req) {
@@ -78,7 +79,7 @@ export function emoticon(req) {
       const img = $(el);
       const imageSrc = img.attr('src');
       if (!imageSrc) return;
-      img.attr('src', req.baseUrl + baseUrl + '/emoticon' + sanitizeImageSrc(imageSrc));
+      img.attr('src', req.baseUrl + BASEURL + '/emoticon' + sanitizeImageSrc(imageSrc));
       img.css('border', '0px');
       img.css('height', '32px');
       img.css('margin', '5px');
@@ -102,11 +103,11 @@ export function gliffy(req) {
       }
       const imageSrc = img.attr('src');
       if (imageSrc) {
-        img.attr('src', req.baseUrl + baseUrl + '/image' + sanitizeImageSrc(imageSrc));
+        img.attr('src', req.baseUrl + BASEURL + '/image' + sanitizeImageSrc(imageSrc));
       }
       const imageSrcSet = img.attr('srcset');
       if (imageSrcSet) {
-        img.attr('srcset', convertImageSrcSet(req.baseUrl + baseUrl, imageSrcSet));
+        img.attr('srcset', convertImageSrcSet(req.baseUrl + BASEURL, imageSrcSet));
       }
     });
     section.body = $.html();
