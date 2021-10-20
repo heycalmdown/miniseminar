@@ -1,4 +1,4 @@
-FROM    node:10-alpine as build
+FROM    node:17-alpine as build
 WORKDIR /app
 
 COPY    README.md package.json package-lock.json /app/
@@ -16,7 +16,7 @@ RUN     npm run build
 
 RUN     npm ci --only=production
 
-FROM    node:10-alpine as release
+FROM    node:17-alpine as release
 WORKDIR /app
 COPY    --from=build  /app/ /app/
 COPY    public        /app/public
