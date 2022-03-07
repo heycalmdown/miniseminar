@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/body-parser": "1.19.1",
-    "@types/cheerio": "0.22.21",
+    "@types/cheerio": "0.22.31",
     "@types/cookie-parser": "1.4.2",
     "@types/express": "4.17.9",
     "@types/jasmine": "3.8.2",
