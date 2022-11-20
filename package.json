@@ -22,7 +22,7 @@
     "morgan": "1.10.0",
     "pug": "3.0.1",
     "qs": "6.9.4",
-    "reveal.js": "4.1.0",
+    "reveal.js": "4.4.0",
     "serve-favicon": "2.5.0",
     "superagent": "5.3.1"
   },
