@@ -98,9 +98,10 @@ export function gliffy(req) {
     imgs.each((_i, el) => {
       const img = $(el);
       const imageClass = img.attr('class');
-      if (!imageClass || imageClass.trim() !== 'gliffy-image') {
-        return;
-      }
+      if (!imageClass) return;
+      const imageClasses = imageClass.split(' ');
+      const isGliffy = imageClasses.includes('gliffy-image');
+      if (!isGliffy) return;
       const imageSrc = img.attr('src');
       if (imageSrc) {
         img.attr('src', req.baseUrl + BASEURL + '/image' + sanitizeImageSrc(imageSrc));
