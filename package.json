@@ -21,7 +21,7 @@
     "lodash": "4.17.21",
     "morgan": "1.10.0",
     "pug": "3.0.1",
-    "qs": "6.9.4",
+    "qs": "6.9.7",
     "reveal.js": "4.1.0",
     "serve-favicon": "2.5.0",
     "superagent": "5.3.1"
