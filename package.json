@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "body-parser": "1.19.0",
-    "cheerio": "1.0.0-rc.3",
+    "cheerio": "1.0.0-rc.12",
     "confluency": "0.10.0",
     "cookie-parser": "1.4.5",
     "dayjs": "1.10.4",
